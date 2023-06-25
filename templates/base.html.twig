@@ -27,45 +27,50 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{ path('app_home')}}">Home</a>
+                <a class="nav-link active" aria-current="page" href="{{ path('app_home')}}">ACCUEIL</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ path('produit_list')}}">PRODUITS</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Catalogue
+                  CATALOGUE
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">boucles d'oreil</a></li>
-                  <li><a class="dropdown-item" href="#">colliers</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">bagues</a></li>
+                  <li><a class="dropdown-item" href="#">BOUCLES D'OREILLES</a></li>
+                  <li><a class="dropdown-item" href="#">COLLIERS</a></li>
+                  <li><a class="dropdown-item" href="{{ path('produit_category', {nom:produit.category.nom})}}">BAGUES</a></li>
+                  
                 </ul>
               </li>
 
 
               <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_login')}}">Connexion</a>
+                <a class="nav-link" href="{{ path('app_login')}}">CONNEXION</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_register')}}">Inscription</a>
+                <a class="nav-link" href="{{ path('app_register')}}">INSCRIPTION</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_logout')}}">Deconnexion</a>
+                <a class="nav-link" href="{{ path('app_logout')}}">DECONNEXION</a>
               </li>
               
               <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_contact')}}" >Contact</a>
+                <a class="nav-link" href="{{ path('app_contact')}}" >CONTACT</a>
               </li>
             </ul>
-            <a id="cart-toogle" class="cart-toogle header-btn header-cart-btn" data-toggle="dropdown" data-display="static">
+            {# <a id="cart-toogle" href = "{{ path('app_cart')}}" class="cart-toogle header-btn header-cart-btn" data-toggle="dropdown" data-display="static">
               <i class="fa fa-shopping-bag fa-fw icon" aria-hidden="true"><span class="cart-products-count-btn  d-none">0</span></i>
               <span class="info-wrapper">
                  <span class="title">Panier</span>
                     <span class="cart-toggle-details">
-                       <span class="text-faded cart-separator"> / </span>
-                              vide
+                       {# <span class="text-faded cart-separator"> / </span> #}
+                       {# {{ app.session.get('panier')?app.session.get('panier')|length:'0'}}
+                               #}
                       </span>
               </span>
-          </a>
+          {# </a> #}
+          <a href="{{ path('app_cart')}}">PANIER <span class ="badge text-danger"><?php echo cartQuantity()?></span></a>
 
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

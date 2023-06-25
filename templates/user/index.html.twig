@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    
+{% endblock %}
+
+{% block body %}
+
+
+
+
+<div class="container my-4">
+    <h1>List des users</h1>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+       
+        <th scope="col">Email</th>
+        <th scope="col">Adress</th>
+        <th scope="col">Commande</th>
+        
+        
+
+        <th scope="col">Role</th>  
+        
+        <th scope="col">Actions</th> 
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        {% for user in users %}
+      <tr>
+        <th scope="row">{{ user.id }}</th>
+       
+        <td>{{user.email }}</td>
+        {# <td>{{user.commande.id }}</td> #}
+        {# <td>{{user.adresse.id }}</td> #}
+        <td>
+            {% for role in user.roles %}
+            {% if role == "ROLE_ADMIN" %}
+            admin
+            {% else %}
+            user
+                
+            {% endif %}
+                
+            {% endfor %}
+        </td>
+        
+        
+        <td>
+        {# <a href="{{ path('user_edit', { id: user.id })}}" class="btn btn-warning">edit</a> #}
+        <a href="{{ path('user_delete', {id: user.id })}}" class="btn btn-danger">delete</a>
+        </td> 
+       
+        
+      </tr>
+      {% endfor %}
+
+    </tbody>
+</table>
+</div>
+    
+{% endblock %}
+
+

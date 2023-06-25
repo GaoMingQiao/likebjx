@@ -5,6 +5,15 @@
 {% block title %}Tous nos produits{% endblock %}
 
 {% block body %}
+
+{% for message in app.flashes('message') %}
+
+<div class="alert alert-warning" role="alert">
+    <strong>{{ message }}</strong>
+</div>
+    
+{% endfor %}
+
 <div class="my-5 text-center">
       <h1>Tous nos produits</h1>
 </div>

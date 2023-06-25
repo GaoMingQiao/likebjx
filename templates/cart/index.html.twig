@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Le panier{% endblock %}
+
+{% block body %}
+<div class="container my-4">
+
+<h1>Votre panier</h1>
+
+{% if rows is empty %}
+<p>Votre panier est vide!</p>
+{% else %}
+
+
+<a href="{{path('cart_clear')}}" onclick="return confirm('Etes vous sur de vouloir vider tout le panier?'); class="btn btn-warning mb-2"><i class="bi-trash-fill me-1"></i>Vider le panier</a>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Prix</th>
+        <th scope="col">Quantité</th>
+        <th scope="col">Total</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        {% for row in rows %}
+      <tr>
+        <th scope="row">{{ row.product.id }}</th>
+        <td>{{ row.product.nom }}</td>
+        <td>{{ row.product.prix|default('-') }}</td>
+        <td>{{ row.quantity}}</td>
+        <td>{{ row.product.prix*row.quantity }}</td>
+        <td>
+            <a class="btn btn-danger" onclick="return confirm('Supprimer cet article du panier?');" href="{{path('cart_delete',{id:row.product.id})}}"> <i class="bi-trash-fill me-1">delete</i></a>
+        </td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">TOTAL</td>
+            <td>{{ totalQuantity }}</td>
+            <td>{{ total }}€</td>
+            <td>
+                <form action="/checkout" method="post">
+                    <button type="submit" class="btn btn-primary">Payer {{ total}}€</button>
+                </form>
+            </td>
+        </tr>
+    </tfoot>
+
+
+
+    </table>
+  {% endif %}
+
+
+</div>
+
+{% endblock %}

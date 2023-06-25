@@ -38,7 +38,35 @@ class ProduitRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+    /**
+    * @return Produit[] Returns an array of Produit objects
+    */
+   public function findByPrix($prix): array
+   {
+       return $this->createQueryBuilder('p')
+           ->andWhere('p.prix = :val')
+           ->setParameter('val', $prix)
+           ->orderBy('p.id', 'ASC')
+           ->setMaxResults(10)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+   /**
+    * @return Produit[] Returns an array of Produit objects
+    */
+    public function findByCat($nom): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.category = :val')
+            ->setParameter('val', $nom)
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
 //    /**
 //     * @return Produit[] Returns an array of Produit objects
 //     */
@@ -63,4 +91,5 @@ class ProduitRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
 }
