@@ -26,11 +26,12 @@ class ProduitController extends AbstractController
             'produit' => $produit,
         ]);
     }
-    #[Route('/produit/{nom}', name:'produit_category')]
-    public function produitByCategory(ManagerRegistry $doctrine, $nom)
+    #[Route('/produit/category/{id}', name:'produit_category')]
+    public function FindProduitByCategory(ManagerRegistry $doctrine, $id)
     {
         $repository = $doctrine->getRepository(Produit::class);
-        $produits = $repository->findByCat($nom);
+       
+         $produits = $repository->findByCategory($id);
         return $this->render('produit/lista.html.twig',[
             'produits'=>$produits
         ]);
