@@ -26,24 +26,25 @@ class ProduitController extends AbstractController
             'produit' => $produit,
         ]);
     }
-    #[Route('/produit/{nom}', name:'produit_category')]
-    public function produitByCategory(ManagerRegistry $doctrine, $nom)
+    #[Route('/produit/{prix}', name:'produit_prix')]
+    public function produitByPrix(ManagerRegistry $doctrine, $prix)
     {
         $repository = $doctrine->getRepository(Produit::class);
-        $produits = $repository->findByCat($nom);
+        $produits = $repository->findByPrix($prix);
         return $this->render('produit/lista.html.twig',[
             'produits'=>$produits
         ]);
 
     }
-    // #[Route('/produit/category/{nom}', name:'produit_category')]
-    // public function findByCategory(ManagerRegistry $doctrine, $nom)
-    // {
-    //     $repo = $doctrine->getRepository(Produit::class);
-    //     $produits = $repo->findBy([],['produit.category.nom'=>$nom]);
-    //     return $this->render('produit/lista.html.twig',[
-    //         'produits'=>$produits
-    //     ]);
+    #[Route('/produit/category/{id}', name:'produit_category')]
+    public function produitByCategory(ManagerRegistry $doctrine, $id)
+    {
+        $repository = $doctrine->getRepository(Produit::class);
+        $produits = $repository->findByCategory($id);
+        return $this->render('produit/lista.html.twig',[
+            'produits'=>$produits
+        ]);
 
-    // }
+    }
+    
 }

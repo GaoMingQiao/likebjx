@@ -21,6 +21,15 @@ class AdminCategoryController extends AbstractController
         ]);
     }
 
+    #[Route('/catalogue', name: 'catalogue', methods: ['GET'])]
+    public function showCatalogue(CategoryRepository $categoryRepository): Response
+    {
+        return $this->render('base.html.twig', [
+            'categories' => $categoryRepository->findAll(),
+        ]);
+    }
+
+
     #[Route('/new', name: 'app_admin_category_new', methods: ['GET', 'POST'])]
     public function new(Request $request, CategoryRepository $categoryRepository): Response
     {

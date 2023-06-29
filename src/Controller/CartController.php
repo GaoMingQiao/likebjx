@@ -48,7 +48,7 @@ class CartController extends AbstractController
     }
     
     #[Route("/cart/add/{id}", name: "cart_add")]
-    public function cartAdd(SessionInterface $session, $id, Request $request)
+    public function cartAdd(SessionInterface $session, $id)
     {       
 
         
@@ -59,9 +59,7 @@ class CartController extends AbstractController
             
         }  else
         {
-            if($request->query->get('qte') != null)
-            $panier[$id] = $request->query->get('qte');
-            else
+            
             $panier[$id] = 1;
         }
 
@@ -104,7 +102,10 @@ class CartController extends AbstractController
         $count=0;
         foreach($session['panier'] as $row)
         
-      return $count+=$row['quantity'];
+         $quantity = $row['quantity'];
+         return $count = $count + $quantity;
+
+    
 
         
        

@@ -55,11 +55,11 @@ class ProduitRepository extends ServiceEntityRepository
    /**
     * @return Produit[] Returns an array of Produit objects
     */
-    public function findByCat($nom): array
+    public function findByCategory($id): array
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.category = :val')
-            ->setParameter('val', $nom)
+            ->andWhere('p.category.id = :val')
+            ->setParameter('val', $id)
             ->orderBy('p.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
