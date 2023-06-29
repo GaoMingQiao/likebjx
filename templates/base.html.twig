@@ -15,72 +15,16 @@
    
 </head>
 <body>
-    <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand text-warning fw-bold" href="#"><img src="image/LIKE.png" width= "150px" alt=""></a>
 
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+<header>
+    {{ render(controller(
+        'App\\Controller\\PartialController::showNav',
+        { }
+    )) }}
+  </header>
+  {{ dump() }}
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{ path('app_home')}}">ACCUEIL</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{ path('produit_list')}}">PRODUITS</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  CATALOGUE
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">BOUCLES D'OREILLES</a></li>
-                  <li><a class="dropdown-item" href="#">COLLIERS</a></li>
-                  <li><a class="dropdown-item" href="{{ path('produit_category', {nom:produit.category.nom})}}">BAGUES</a></li>
-                  
-                </ul>
-              </li>
-
-
-              <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_login')}}">CONNEXION</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_register')}}">INSCRIPTION</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_logout')}}">DECONNEXION</a>
-              </li>
-              
-              <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_contact')}}" >CONTACT</a>
-              </li>
-            </ul>
-            {# <a id="cart-toogle" href = "{{ path('app_cart')}}" class="cart-toogle header-btn header-cart-btn" data-toggle="dropdown" data-display="static">
-              <i class="fa fa-shopping-bag fa-fw icon" aria-hidden="true"><span class="cart-products-count-btn  d-none">0</span></i>
-              <span class="info-wrapper">
-                 <span class="title">Panier</span>
-                    <span class="cart-toggle-details">
-                       {# <span class="text-faded cart-separator"> / </span> #}
-                       {# {{ app.session.get('panier')?app.session.get('panier')|length:'0'}}
-                               #}
-                      </span>
-              </span>
-          {# </a> #}
-          <a href="{{ path('app_cart')}}">PANIER <span class ="badge text-danger"><?php echo cartQuantity()?></span></a>
-
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-primary text-warning" type="submit">Search</button>
-            </form>
-          </div>
-        </div>
-      </nav>
-    </header>
-
+   
     {% block body %}{% endblock %}
 
     
@@ -89,10 +33,7 @@
           
 
         <footer>
-        <div class = "mt-4">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2636.670257951984!2d2.4354559147480055!3d48.635291679266246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e5de20790bde3f%3A0xf081e72d269ca1d5!2s2%20Rue%20Descartes%2C%2091000%20%C3%89vry-Courcouronnes!5e0!3m2!1sfr!2sfr!4v1678374262767!5m2!1sfr!2sfr" width=100% height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-
+       
         <div class="container">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos ea error molestiae veritatis eveniet voluptate explicabo eum, quasi recusandae assumenda?</p>
            <h3>Links:</h3>

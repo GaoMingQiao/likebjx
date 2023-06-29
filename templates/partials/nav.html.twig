@@ -1,0 +1,70 @@
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand text-warning fw-bold" href="#"><img src="image/LIKE.png" width= "150px" alt=""></a>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ path('app_home')}}">ACCUEIL</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ path('produit_list')}}">PRODUITS</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  CATALOGUE
+                </a>
+                <ul class="dropdown-menu">
+                 {% for category in categories%}
+                  <li><a class="dropdown-item" href="#">{{ category.nom }}</a></li>
+                  {% endfor %}
+                  
+                </ul>
+              </li>
+
+              {% if app.user %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_login')}}">CONNEXION</a>
+              </li>
+              {% else %}
+              
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_logout')}}">DECONNEXION</a>
+              </li>
+              {% endif %}
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_register')}}">INSCRIPTION</a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('app_contact')}}" >CONTACT</a>
+              </li>
+            </ul>
+            {# <a id="cart-toogle" href = "{{ path('app_cart')}}" class="cart-toogle header-btn header-cart-btn" data-toggle="dropdown" data-display="static">
+              <i class="fa fa-shopping-bag fa-fw icon" aria-hidden="true"><span class="cart-products-count-btn  d-none">0</span></i>
+              <span class="info-wrapper">
+                 <span class="title">Panier</span>
+                    <span class="cart-toggle-details">
+                       {# <span class="text-faded cart-separator"> / </span> #}
+                       {# {{ app.session.get('panier')?app.session.get('panier')|length:'0'}}
+                               #}
+                      </span>
+              </span>
+          {# </a> #}
+          <a href="{{ path('app_cart')}}">PANIER <span class ="badge text-danger"><?php echo cartQuantity()?></span></a>
+
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-primary text-warning" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    
+    

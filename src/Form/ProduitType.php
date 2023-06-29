@@ -24,12 +24,12 @@ class ProduitType extends AbstractType
             ->add('description',TextareaType::class)
             ->add('prix',IntegerType::class)
             ->add('stock', IntegerType::class)
-            ->add('imageFile', FileType::class);
-            // ->add('category', EntityType::class,[
-            //     'required'=>false,
-            //     'class'=>Category::class,
-            //     'choice_label'=>'nom'
-            // ])
+            ->add('imageFile', FileType::class)
+            ->add('category', EntityType::class,[
+                'required'=>false,
+                'class'=>Category::class,
+                'choice_label'=>'nom'
+            ]);
             // ->add('commande', EntityType::class,[
             //     'required'=>false,
             //     'class'=>Commande::class,
