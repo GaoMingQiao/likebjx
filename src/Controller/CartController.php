@@ -103,7 +103,10 @@ class CartController extends AbstractController
         $count=0;
         foreach($session['panier'] as $row)
         
-      return $count+=$row['quantity'];
+         $quantity = $row['quantity'];
+         return $count = $count + $quantity;
+
+    
 
         
        
