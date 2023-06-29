@@ -21,7 +21,7 @@
                 </a>
                 <ul class="dropdown-menu">
                  {% for category in categories%}
-                  <li><a class="dropdown-item" href="#">{{ category.nom }}</a></li>
+                  <li><a class="dropdown-item" href="{{ path('produitByCategory',{id:category.id})}}">{{ category.nom }}</a></li>
                   {% endfor %}
                   
                 </ul>
