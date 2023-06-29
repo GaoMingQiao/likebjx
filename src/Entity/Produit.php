@@ -38,6 +38,9 @@ class Produit
     #[Vich\UploadableField(mapping: 'produits', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
+    #[ORM\Column]
+    private ? int $category_id = null;
+
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?Category $category = null;
 
@@ -140,7 +143,17 @@ class Produit
 
         return $this;
     }
+    public function getCategoryId(): ?Int
+    {
+        return $this->category_id;
+    }
 
+    public function setCategoryId(?Int $categoryId): self
+    {
+        $this->category_id = $categoryId;
+
+        return $this;
+    }
     /**
      * @return Collection<int, DetailCommande>
      */

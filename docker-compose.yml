@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  localdblikebjx:
+    container_name: localdblikebjx
+    platform: linux/x86_64
+    build:
+      context: ./docker
+      dockerfile: dockerfiles/Dockerfile-db
+    ports:
+      - "3306:3306"
+    command: --max_allowed_packet=132505856
+    environment:
+      - MYSQL_ROOT_PASSWORD=BdD2000Px
+      - MYSQL_DATABASE=likebjx

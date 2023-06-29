@@ -26,21 +26,11 @@ class ProduitController extends AbstractController
             'produit' => $produit,
         ]);
     }
-    #[Route('/produit/{prix}', name:'produit_prix')]
-    public function produitByPrix(ManagerRegistry $doctrine, $prix)
+    #[Route('/produit/{nom}', name:'produit_category')]
+    public function produitByCategory(ManagerRegistry $doctrine, $nom)
     {
         $repository = $doctrine->getRepository(Produit::class);
-        $produits = $repository->findByPrix($prix);
-        return $this->render('produit/lista.html.twig',[
-            'produits'=>$produits
-        ]);
-
-    }
-    #[Route('/produit/category/{id}', name:'produit_category')]
-    public function produitByCategory(ManagerRegistry $doctrine, $id)
-    {
-        $repository = $doctrine->getRepository(Produit::class);
-        $produits = $repository->findByCategory($id);
+        $produits = $repository->findByCat($nom);
         return $this->render('produit/lista.html.twig',[
             'produits'=>$produits
         ]);
