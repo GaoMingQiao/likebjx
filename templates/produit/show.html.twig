@@ -19,11 +19,12 @@
             <p class="lead">{{ produit.description }}</p>
             <div class="d-flex">
                 <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                <a class="btn btn-outline-dark flex-shrink-0" type="button" href = "{{ path('cart_add',{id:produit.id})}}">
+                <a class="btn btn-outline-dark mt-auto" href="{{ path('app_home') }}">Retour à l'accueil</a>
+                <a class="btn btn-outline-success flex-shrink-0" type="button" href = "{{ path('cart_add',{id:produit.id})}}">
                     <i class="bi-cart-fill me-1"></i>
                     Add to cart
                 </a>
-                <a class="btn btn-outline-success mt-auto" href="{{ path('app_home') }}">Retour à l'accueil</a>
+                
             </div>
         </div>
     </div>
