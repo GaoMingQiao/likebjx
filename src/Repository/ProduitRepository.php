@@ -66,6 +66,17 @@ class ProduitRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+    public function findLatest(): array
+    {
+        return $this->createQueryBuilder('p')
+           
+        
+            ->orderBy('p.CreatedAt', 'desc')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     
     

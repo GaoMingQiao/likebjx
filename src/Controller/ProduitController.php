@@ -41,5 +41,14 @@ class ProduitController extends AbstractController
         ]);
 
     }
+    #[Route('/produit/latest', name:'produitLatest')]
+    public function produitLatest(ManagerRegistry $doctrine)
+    {
+     $repository = $doctrine->getRepository(Produit::class);
+     $produits = $repository->findLatest();
+     return $this->render('produit/_listLatest.html.twig',[
+        'produits'=>$produits
+     ]);
+    }
     
 }
