@@ -25,6 +25,8 @@ class ProduitType extends AbstractType
             ->add('prix',IntegerType::class)
             ->add('stock', IntegerType::class)
             ->add('imageFile', FileType::class)
+            ->add('CreatedAt')
+            
             ->add('category', EntityType::class,[
                 'required'=>false,
                 'class'=>Category::class,

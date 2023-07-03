@@ -1,7 +1,7 @@
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand text-warning fw-bold" href="#"><img src="image/LIKE.png" width= "150px" alt=""></a>
+          <a class="navbar-brand text-warning fw-bold" ><img src="image/LIKE.png" width= "150px" alt=""></a>
 
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,7 @@
                 </a>
                 <ul class="dropdown-menu">
                  {% for category in categories%}
-                  <li><a class="dropdown-item" href="{{ path('produitByCategory',{id:category.id})}}">{{ category.nom }}</a></li>
+                  <li><a class="dropdown-item" href="{{ path('produitByCategory',{id:category.id}) }}">{{ category.nom }}</a></li>
                   {% endfor %}
                   
                 </ul>
@@ -29,12 +29,13 @@
 
               {% if app.user %}
               <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_login')}}">CONNEXION</a>
+                <a class="nav-link" href="{{ path('app_logout')}}">DECONNEXION</a>
+             
               </li>
               {% else %}
               
               <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_logout')}}">DECONNEXION</a>
+                <a class="nav-link" href="{{ path('app_login')}}">CONNEXION</a>
               </li>
               {% endif %}
 
@@ -44,6 +45,9 @@
               
               <li class="nav-item">
                 <a class="nav-link" href="{{ path('app_contact')}}" >CONTACT</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" >ADMIN</a>
               </li>
             </ul>
             {# <a id="cart-toogle" href = "{{ path('app_cart')}}" class="cart-toogle header-btn header-cart-btn" data-toggle="dropdown" data-display="static">
@@ -57,11 +61,14 @@
                       </span>
               </span>
           {# </a> #}
-          <a href="{{ path('app_cart')}}">PANIER <span class ="badge text-danger"><?php echo cartQuantity()?></span></a>
+          <a href="{{ path('app_cart')}}"><i class="fa fa-car"></i>
+            <i class="fa-sharp fa-solid fa-cart-shopping"></i>
+            <i class="fas fa-shopping-cart"></i> 
+            <span class ="badge text-danger"></span></a>
 
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-primary text-warning" type="submit">Search</button>
+              <button class="btn btn-outline-success text-dark" type="submit">Search</button>
             </form>
           </div>
         </div>

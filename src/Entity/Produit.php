@@ -47,6 +47,9 @@ class Produit
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: DetailCommande::class)]
     private Collection $detailCommandes;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $CreatedAt = null;
+
     public function __construct()
     {
         $this->detailCommandes = new ArrayCollection();
@@ -180,6 +183,18 @@ class Produit
                 $detailCommande->setProduit(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->CreatedAt;
+    }
+
+    public function setCreatedAt(?\DateTimeImmutable $CreatedAt): self
+    {
+        $this->CreatedAt = $CreatedAt;
 
         return $this;
     }

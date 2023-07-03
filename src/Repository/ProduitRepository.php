@@ -58,10 +58,21 @@ class ProduitRepository extends ServiceEntityRepository
     public function findByCategory($id): array
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.category.id = :val')
+            ->andWhere('p.category_id = :val')
             ->setParameter('val', $id)
             ->orderBy('p.id', 'ASC')
             ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    public function findLatest(): array
+    {
+        return $this->createQueryBuilder('p')
+           
+        
+            ->orderBy('p.CreatedAt', 'desc')
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult()
         ;

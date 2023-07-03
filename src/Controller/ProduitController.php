@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Produit;
+use App\Entity\Category;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,11 +31,24 @@ class ProduitController extends AbstractController
     public function produitByCategory(ManagerRegistry $doctrine, $id)
     {
         $repository = $doctrine->getRepository(Produit::class);
+        $repositoryCategory = $doctrine->getRepository(Category::class);
+        $category = $repositoryCategory->find($id);
+
         $produits = $repository->findByCategory($id);
         return $this->render('produit/lista.html.twig',[
-            'produits'=>$produits
+            'produits'=>$produits,
+            'category'=>$category
         ]);
 
+    }
+    #[Route('/produit/latest', name:'produitLatest')]
+    public function produitLatest(ManagerRegistry $doctrine)
+    {
+     $repository = $doctrine->getRepository(Produit::class);
+     $produits = $repository->findLatest();
+     return $this->render('produit/_listLatest.html.twig',[
+        'produits'=>$produits
+     ]);
     }
     
 }

@@ -26,7 +26,7 @@ class CartController extends AbstractController
                 "quantity"=>$quantity
             ];
         }
-        dd($rows);
+        // dd($rows);
 
         $total = 0;
         foreach($rows as $id=>$value)
