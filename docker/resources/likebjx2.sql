@@ -200,9 +200,10 @@ CREATE TABLE `produit` (
   `id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `description` longtext DEFAULT NULL,
-  `prix` int(11) NOT NULL,
+  `prix` float NOT NULL,
+  `taux_tva` float NOT NULL,
   `stock` int(11) DEFAULT NULL,
-  `image_name` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
   `brand_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -211,13 +212,13 @@ CREATE TABLE `produit` (
 -- Déchargement des données de la table `produit`
 --
 
-INSERT INTO `produit` (`id`, `nom`, `description`, `prix`, `stock`, `image_name`, `category_id`, `brand_id`) VALUES
-(1, 'boucles d\'oreilles en préhnite', 'La Préhnite apporte un sentiment renouvelé de vitalité et d\'énergie à ton esprit.', 20, 2, 'bo-prehnite-646bece69ff25116826502.jpg', 2, 6),
-(2, 'collier labis', 'Le lapis-lazuli, une pierre qui donne confiance et ouvrira notre esprit à de nouvelles solutions nous conduisant à la résolution .', 100, 2, 'lapis-colier-640-646bedc28d2aa627864971.jpg', 3 , 8),
-(5, 'Grosse bague pierre ruby émeraude argent doré', 'Cette magnifique bague est sertie avec des émeraudes et rubis aux couleurs éclatantes; les deux pierres sont très précieuses et ils sont des symboles de l\'amour et de la passion.', 150, 4, 'maxres-grosse-bague-6484fbf54703d830869837.jpg', 4, 6),
-(6, 'Bague diamant laboratoire', 'Le diamant synthétique est un diamant dont les caractéristiques sont identiques aux diamants extraits des mines. Ils sont aussi beaux que les diamants naturels mais beaucoup moins chers et plus écologiques.', 80, 4, 'maxresgrossebague-6484fdc683e9f100571410.jpg', 4, 9),
-(9, 'Collier Spinelle en Argent Doré', 'La Spinelle est une pierre de protection, qui chasse les ondes négatives, mais aussi les cauchemars pour un sommeil plus apaisé.', 180, 2, 'spinel-64850556d46f3734281779.jpg', 3, 8),
-(10, 'Bague Fleur Améthyste', 'Grosse bague artisanale sertie améthyste et émeraude en argent 925.', 180, 2, 'sila-amethyste-bague-64850eb711e7f361622458.jpg', 4,6 );
+INSERT INTO `produit` (`id`, `nom`, `description`, `prix`, `taux_tva` ,`stock`, `image`, `category_id`, `brand_id`) VALUES
+(1, 'boucles d\'oreilles en préhnite', 'La Préhnite apporte un sentiment renouvelé de vitalité et d\'énergie à ton esprit.', 20.5, 0.20, 2, 'bo-prehnite-646bece69ff25116826502.jpg', 2, 6),
+(2, 'collier labis', 'Le lapis-lazuli, une pierre qui donne confiance et ouvrira notre esprit à de nouvelles solutions nous conduisant à la résolution .', 100.99, 0.20, 2, 'lapis-colier-640-646bedc28d2aa627864971.jpg', 3 , 8),
+(5, 'Grosse bague pierre ruby émeraude argent doré', 'Cette magnifique bague est sertie avec des émeraudes et rubis aux couleurs éclatantes; les deux pierres sont très précieuses et ils sont des symboles de l\'amour et de la passion.', 150,  0.20, 4, 'maxres-grosse-bague-6484fbf54703d830869837.jpg', 4, 6),
+(6, 'Bague diamant laboratoire', 'Le diamant synthétique est un diamant dont les caractéristiques sont identiques aux diamants extraits des mines. Ils sont aussi beaux que les diamants naturels mais beaucoup moins chers et plus écologiques.', 80,  0.20, 4, 'maxresgrossebague-6484fdc683e9f100571410.jpg', 4, 9),
+(9, 'Collier Spinelle en Argent Doré', 'La Spinelle est une pierre de protection, qui chasse les ondes négatives, mais aussi les cauchemars pour un sommeil plus apaisé.', 180,  0.20,  2, 'spinel-64850556d46f3734281779.jpg', 3, 8),
+(10, 'Bague Fleur Améthyste', 'Grosse bague artisanale sertie améthyste et émeraude en argent 925.', 180.50,  0.20, 2, 'sila-amethyste-bague-64850eb711e7f361622458.jpg', 4,6 );
 
 -- --------------------------------------------------------
 
