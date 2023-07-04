@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 03 juil. 2023 à 13:03
+-- Généré le : lun. 26 juin 2023 à 23:05
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.2.0
 
@@ -58,14 +58,28 @@ CREATE TABLE `category` (
   `image_name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+
+CREATE TABLE `brand` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `description` longtext DEFAULT NULL,
+  `image_name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 --
 -- Déchargement des données de la table `category`
 --
 
 INSERT INTO `category` (`id`, `nom`, `description`, `image_name`) VALUES
-(2, 'Boucles d\'oreilles', 'Portez des boucles d\'oreilles pierres pour libérer toutes leurs vertus.\r\n Une sélection des plus belles Boucles d\'Oreilles en Pierres semi-précieuses et Argent 925.', 'bo-long-649f2ae97d588619927760.jpg'),
-(3, 'Colliers', 'Offrir un collier en argent avec pendentif pierre naturel et argent massif, vous lui offrez un cadeau qui signifie beaucoup.', 'spinel-649f260b9ad8f158669056.jpg'),
-(4, 'Bagues', 'Like vous propose des bagues en argent 925 fabriquées par des artisans indiens ou thaïlandais au savoir-faire ancestral. Montées avec des pierres fines et argent massif.', 'bague-category-649f25e599699781605735.jpg');
+(2, 'Boucles d\'oreilles', 'Portez des boucles d\'oreilles pierres pour libérer toutes leurs vertus.\r\n Une sélection des plus belles Boucles d\'Oreilles en Pierres semi-précieuses et Argent 925.', 'bo-perle-646bdb2f7fed8491591971.jpg'),
+(3, 'Collier', 'Offrir un collier en argent avec pendentif pierre naturel et argent massif, vous lui offrez un cadeau qui signifie beaucoup.', 'emerauld-collier-1280-646bdcb5f306d466619107.jpg'),
+(4, 'Bague', 'Like vous propose des bagues en argent 925 fabriquées par des artisans indiens ou thaïlandais au savoir-faire ancestral. Montées avec des pierres fines et argent massif.', 'bague-diamont-brut-646bdd9e3dc18389270975.jpg');
+
+INSERT INTO `brand` (`id`, `nom`, `description`, `image_name`) VALUES
+(6, 'brand 6', 'Portez des boucles d\'oreilles pierres pour libérer toutes leurs vertus.\r\n Une sélection des plus belles Boucles d\'Oreilles en Pierres semi-précieuses et Argent 925.', 'bo-perle-646bdb2f7fed8491591971.jpg'),
+(8, 'brand 8', 'Offrir un collier en argent avec pendentif pierre naturel et argent massif, vous lui offrez un cadeau qui signifie beaucoup.', 'emerauld-collier-1280-646bdcb5f306d466619107.jpg'),
+(9, 'brand 9', 'Like vous propose des bagues en argent 925 fabriquées par des artisans indiens ou thaïlandais au savoir-faire ancestral. Montées avec des pierres fines et argent massif.', 'bague-diamont-brut-646bdd9e3dc18389270975.jpg');
+
 
 -- --------------------------------------------------------
 
@@ -146,8 +160,7 @@ INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_
 ('DoctrineMigrations\\Version20230522202141', '2023-05-22 22:21:58', 14),
 ('DoctrineMigrations\\Version20230523085948', '2023-05-23 11:00:04', 91),
 ('DoctrineMigrations\\Version20230523120256', '2023-05-23 14:03:57', 43),
-('DoctrineMigrations\\Version20230523121430', '2023-05-23 14:15:06', 127),
-('DoctrineMigrations\\Version20230630212629', '2023-06-30 23:26:59', 85);
+('DoctrineMigrations\\Version20230523121430', '2023-05-23 14:15:06', 127);
 
 -- --------------------------------------------------------
 
@@ -187,35 +200,25 @@ CREATE TABLE `produit` (
   `id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `description` longtext DEFAULT NULL,
-  `prix` int(11) NOT NULL,
+  `prix` float NOT NULL,
+  `taux_tva` float NOT NULL,
   `stock` int(11) DEFAULT NULL,
-  `image_name` varchar(255) DEFAULT NULL,
-  `category_id` int(11) NOT NULL,
-  `created_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)'
+  `image` varchar(255) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `brand_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `produit`
 --
 
-INSERT INTO `produit` (`id`, `nom`, `description`, `prix`, `stock`, `image_name`, `category_id`, `created_at`) VALUES
-(1, 'boucles d\'oreilles en préhnite', 'La Préhnite apporte un sentiment renouvelé de vitalité et d\'énergie à ton esprit.', 20, 2, 'bo-prehnite-646bece69ff25116826502.jpg', 2, NULL),
-(2, 'collier labis', 'Le lapis-lazuli, une pierre qui donne confiance et ouvrira notre esprit à de nouvelles solutions nous conduisant à la résolution .', 100, 2, 'lapis-colier-640-646bedc28d2aa627864971.jpg', 3, NULL),
-(5, 'Grosse bague pierre ruby émeraude argent doré', 'Cette magnifique bague est sertie avec des émeraudes et rubis aux couleurs éclatantes; les deux pierres sont très précieuses et ils sont des symboles de l\'amour et de la passion.', 150, 4, 'maxres-grosse-bague-6484fbf54703d830869837.jpg', 4, NULL),
-(6, 'Bague diamant laboratoire', 'Le diamant synthétique est un diamant dont les caractéristiques sont identiques aux diamants extraits des mines. Ils sont aussi beaux que les diamants naturels mais beaucoup moins chers et plus écologiques.', 80, 4, 'maxresgrossebague-6484fdc683e9f100571410.jpg', 4, NULL),
-(9, 'Collier Spinelle en Argent Doré', 'La Spinelle est une pierre de protection, qui chasse les ondes négatives, mais aussi les cauchemars pour un sommeil plus apaisé.', 180, 2, 'spinel-64850556d46f3734281779.jpg', 3, '2023-06-30 23:53:40'),
-(10, 'Bague Fleur Améthyste', 'Grosse bague artisanale sertie améthyste et émeraude en argent 925.', 180, 2, 'sila-amethyste-bague-64850eb711e7f361622458.jpg', 4, NULL),
-(11, 'Bague Royale Spinelle Péridot', 'Bague sertie d\'une grosse pierre de péridot et spinelle rose monté sur argent massif 925.', 120, 6, 'bague-peridot-tourmaline-649f309bcd3a7233019949.jpg', 4, NULL),
-(12, 'Bague Serpent Saphir Spinelle Rose', 'Bague ouverte en saphir et spinelle rose montée sur argent 925.', 150, 6, 'bague-double-ouverte-649f3190abb2c482427185.jpg', 4, NULL),
-(13, 'Boucles d\'oreilles Ruby', 'Boucles d\'oreilles en ruby et argent 925.', 150, 6, 'bo-ruby-649f323522552703236199.jpg', 2, NULL),
-(14, 'Boucles d\'oreilles Tourmaline', 'Boucles d\'oreilles tourmaline jaune et argent 925.', 200, 6, 'bo-tourmaline-jaune-649f32766f018724677217.jpg', 2, '2023-06-30 23:54:24'),
-(15, 'Boucles d\'oreilles Péridot', 'Boucles d\'oreilles en  pierre péridot et tourmaline rose montées sur argent doré.', 150, 6, 'bo-peridot-649f32d50e22b421611273.jpg', 2, NULL),
-(16, 'Collier Grosse Perle', 'Collier avec une grosse perle de l\'eau douce et des petits saphirs;\r\nla monture et la chaine sont en argent façon ancienne.', 180, 6, 'collier-perle-649f336f1213c710033319.jpg', 3, NULL),
-(17, 'Bague Améthyste Citrine', 'Bague ouverte avec pierres améthyste et citrine, montée sur argent doré.', 150, 6, 'bague-ame-citrine-649f33c329b4d129361712.jpg', 4, NULL),
-(18, 'Boucles d\'oreilles Tourmaline Rose', 'Boucles d\'oreilles longues en tourmaline rose et perles d\'eau douce.', 200, 6, 'bo-long-649f34256a7e2806636642.jpg', 2, NULL),
-(19, 'Bague Ruby Améthyste', 'Bague ouverte en ruby et améthyste monture argent massif 925.', 150, 6, 'bague-double-violet-649f3474115d5313650259.jpg', 4, NULL),
-(20, 'Bague Petit Ruby', 'Bague en ruby monté sur argent façon oxydée.', 20, 10, 'bague-ruby-petit-649f34be22695226412881.jpg', 4, NULL),
-(21, 'Collier Tourmaline Rose', 'Collier tourmaline rose et argent 925.\r\nLongueur 42 cm.', 120, 6, 'colier-tourmaline-rose-649f352f6e824432844921.jpg', 3, '2023-06-30 23:55:00');
+INSERT INTO `produit` (`id`, `nom`, `description`, `prix`, `taux_tva` ,`stock`, `image`, `category_id`, `brand_id`) VALUES
+(1, 'boucles d\'oreilles en préhnite', 'La Préhnite apporte un sentiment renouvelé de vitalité et d\'énergie à ton esprit.', 20.5, 0.20, 2, 'bo-prehnite-646bece69ff25116826502.jpg', 2, 6),
+(2, 'collier labis', 'Le lapis-lazuli, une pierre qui donne confiance et ouvrira notre esprit à de nouvelles solutions nous conduisant à la résolution .', 100.99, 0.20, 2, 'lapis-colier-640-646bedc28d2aa627864971.jpg', 3 , 8),
+(5, 'Grosse bague pierre ruby émeraude argent doré', 'Cette magnifique bague est sertie avec des émeraudes et rubis aux couleurs éclatantes; les deux pierres sont très précieuses et ils sont des symboles de l\'amour et de la passion.', 150,  0.20, 4, 'maxres-grosse-bague-6484fbf54703d830869837.jpg', 4, 6),
+(6, 'Bague diamant laboratoire', 'Le diamant synthétique est un diamant dont les caractéristiques sont identiques aux diamants extraits des mines. Ils sont aussi beaux que les diamants naturels mais beaucoup moins chers et plus écologiques.', 80,  0.20, 4, 'maxresgrossebague-6484fdc683e9f100571410.jpg', 4, 9),
+(9, 'Collier Spinelle en Argent Doré', 'La Spinelle est une pierre de protection, qui chasse les ondes négatives, mais aussi les cauchemars pour un sommeil plus apaisé.', 180,  0.20,  2, 'spinel-64850556d46f3734281779.jpg', 3, 8),
+(10, 'Bague Fleur Améthyste', 'Grosse bague artisanale sertie améthyste et émeraude en argent 925.', 180.50,  0.20, 2, 'sila-amethyste-bague-64850eb711e7f361622458.jpg', 4,6 );
 
 -- --------------------------------------------------------
 
@@ -238,8 +241,7 @@ INSERT INTO `user` (`id`, `email`, `roles`, `password`) VALUES
 (1, 'lili@gmail.com', '[\"ROLE_USER\"]', '$2y$13$apxVU36feNB0VQOKu8ITr.UEBADHIB.IunDYPYgffKNcCYYy50UTW'),
 (2, 'gao@gmail.com', '[\"ROLE_USER\"]', '$2y$13$C2GuKFiNL5r52afqFklCpu547WSMFo.h/dATGtyyCQPLWwnLS.O/K'),
 (3, 'zhang@gmail.com', '[\"ROLE_USER\"]', '$2y$13$Iwy5ETa4BdHWb5Hv3jKSY.D9tJh0qz1NkKxMnqnkb7U6fZ/FDpk/W'),
-(4, 'lisi@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$szhsji7w6P1TFEzS.DQMHOzHyH6CLvP.pcLxc2DMq4GVLBAwnRzPG'),
-(5, 'lucy@gmail.com', '[]', '$2y$13$krukzdkL5/hATbPHtnbvWe3arG5fb5SX7nkNpxZdaGABQ9NUUQzju');
+(4, 'lisi@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$szhsji7w6P1TFEzS.DQMHOzHyH6CLvP.pcLxc2DMq4GVLBAwnRzPG');
 
 --
 -- Index pour les tables déchargées
@@ -352,13 +354,13 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT pour la table `produit`
 --
 ALTER TABLE `produit`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Contraintes pour les tables déchargées
