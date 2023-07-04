@@ -1,4 +1,5 @@
 
+
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand text-warning fw-bold" ><img src="image/LIKE.png" width= "150px" alt=""></a>
@@ -68,12 +69,13 @@
            
           <a href="{{ path('app_cart')}}">
            
-          <div class="">
-            <i class="fa fa-shopping-cart"></i>/
-            {{ app.session.get('panier')?app.session.get('panier')|length:'0'}}
+          <div class="panier-orange">
+            <a href="#" class="header-icon" data-toggle="dropdown" title="You got 11 notifications">
+              <i class="fa fa-shopping-cart"></i>
+               {# {{ app.session.get('panier')?app.session.get('panier')|length:'0'}} #}
+              <span class="badge badge-icon">11</span>
+            </a>
           </div>
-            
-
          </a>
 
             <form class="d-flex" role="search">
