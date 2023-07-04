@@ -23,3 +23,13 @@ div{
   font-size: 36px !important;
   
 }
+span.current-price{
+  color:#e61b80;
+  font-size:28px;
+  font-weight:700;
+}
+.m-link{
+  display:block;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}

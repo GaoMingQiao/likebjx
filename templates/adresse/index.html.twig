@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>User</th>
                 <th>Adresse</th>
                 <th>Complement</th>
                 <th>CodePostal</th>
@@ -20,6 +21,9 @@
         {% for adresse in adresses %}
             <tr>
                 <td>{{ adresse.id }}</td>
+                <td>{{ adresse.user }}</td>
+                
+
                 <td>{{ adresse.adresse }}</td>
                 <td>{{ adresse.complement }}</td>
                 <td>{{ adresse.codePostal }}</td>
