@@ -1,4 +1,4 @@
 FROM mysql:5.7
 
 # Create the temporary sitemap tables at startup
-COPY ./resources/likebjx.sql /docker-entrypoint-initdb.d
+COPY ./resources/likebjx2.sql /docker-entrypoint-initdb.d
