@@ -9,3 +9,17 @@
     object-fit: contain;
     aspect-ratio: 1/1;
 }
+div{
+  display:block;
+}
+.company-info-group {
+  background-color: #17a2b8;
+  color:#fff;
+  padding: 64px 0;
+  text-align: center !important;
+
+}
+.fa{
+  font-size: 36px !important;
+  
+}
