@@ -3,76 +3,60 @@
 namespace App\Controller;
 
 use App\Entity\Adresse;
+use App\Entity\User;
 use App\Form\AdresseType;
 use App\Repository\AdresseRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/adresse')]
 class AdresseController extends AbstractController
 {
-    #[Route('/', name: 'app_adresse_index', methods: ['GET'])]
-    public function index(AdresseRepository $adresseRepository): Response
-    {
+    // #[Route('/adresse', name: 'app_adresse')]
+    // public function index(ManagerRegistry $doctrine): Response
+    // {   
+    //     $id = $this->getUser()->getId();
+    //     $adresses = $doctrine->getRepository(Adresse::class)->findBy(['user_id'=>$id]);
+    //     return $this->render('adresse/index.html.twig', [
+    //         'adresses' => $adresses,
+    //         // 'user'=>$id,
+
+    //     ]);
+    // }
+    #[Route('/adresse', name: 'app_adresse')]
+    public function index(ManagerRegistry $doctrine): Response
+    {   
+        $adresses= $this->getUser()->getAdresse()->getValues();
+        // $adresses = $doctrine->getRepository(Adresse::class)->findBy(['user_id'=>$id]);
         return $this->render('adresse/index.html.twig', [
-            'adresses' => $adresseRepository->findAll(),
+            'adresses' => $adresses,
+            // 'user'=>$id,
+
         ]);
     }
+    // {
+    //     $adresses = $this->getUser()->getAdresse()->getValues();
+    // }
 
-    #[Route('/new', name: 'app_adresse_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, AdresseRepository $adresseRepository): Response
+    #[Route('/adresse/add', name:'adresse_add')]
+    public function addAdressse(Request $request, AdresseRepository $adresseRepo)
     {
         $adresse = new Adresse();
-        $form = $this->createForm(AdresseType::class, $adresse);
+        $form = $this->createForm(AdresseType::class,$adresse);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $adresseRepository->save($adresse, true);
-
-            return $this->redirectToRoute('app_adresse_index', [], Response::HTTP_SEE_OTHER);
+        if($form->isSubmitted()&& $form->isValid())
+        {
+            $adresseRepo->save($adresse, true);
+            return $this->redirectToRoute('app_adresse', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('adresse/new.html.twig', [
-            'adresse' => $adresse,
-            'form' => $form,
+
+        
+        return $this->render('adresse/add.html.twig',[
+            'form'=>$form->createView(),
+            'adresse'=>$adresse
         ]);
-    }
-
-    #[Route('/{id}', name: 'app_adresse_show', methods: ['GET'])]
-    public function show(Adresse $adresse): Response
-    {
-        return $this->render('adresse/show.html.twig', [
-            'adresse' => $adresse,
-        ]);
-    }
-
-    #[Route('/{id}/edit', name: 'app_adresse_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Adresse $adresse, AdresseRepository $adresseRepository): Response
-    {
-        $form = $this->createForm(AdresseType::class, $adresse);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $adresseRepository->save($adresse, true);
-
-            return $this->redirectToRoute('app_adresse_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('adresse/edit.html.twig', [
-            'adresse' => $adresse,
-            'form' => $form,
-        ]);
-    }
-
-    #[Route('/{id}', name: 'app_adresse_delete', methods: ['POST'])]
-    public function delete(Request $request, Adresse $adresse, AdresseRepository $adresseRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$adresse->getId(), $request->request->get('_token'))) {
-            $adresseRepository->remove($adresse, true);
-        }
-
-        return $this->redirectToRoute('app_adresse_index', [], Response::HTTP_SEE_OTHER);
     }
 }

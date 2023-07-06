@@ -2,7 +2,9 @@
 
 {% block title %}Le panier{% endblock %}
 
+
 {% block body %}
+{{ dump()}}
 <div class="container my-4">
 
 <h1>Votre panier</h1>
@@ -47,7 +49,7 @@
             <td>{{ total }}€</td>
             <td>
                 <form action="/checkout" method="post">
-                    <button type="submit" class="btn btn-primary">Valider mon panier {{ total}}€</button>
+                    <a type="submit" class="btn btn-primary" href="{{ path('app_adresse')}}">Valider mon panier {{ total}}€</a>
                 </form>
             </td>
         </tr>
@@ -61,4 +63,6 @@
 
 </div>
 
+
 {% endblock %}
+

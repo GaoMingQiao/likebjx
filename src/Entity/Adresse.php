@@ -25,6 +25,9 @@ class Adresse
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $ville = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $user_id = null;
+
     #[ORM\ManyToOne(inversedBy: 'adresse')]
     private ?User $user = null;
 
