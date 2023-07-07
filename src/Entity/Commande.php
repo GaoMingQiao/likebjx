@@ -31,6 +31,15 @@ class Commande
     #[ORM\OneToMany(mappedBy: 'commande', targetEntity: DetailCommande::class, orphanRemoval: true)]
     private Collection $detailCommandes;
 
+    #[ORM\Column]
+    private ?int $userId = null;
+
+    #[ORM\Column]
+    private ?int $adresseId = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $statut = null;
+
     public function __construct()
     {
         $this->detailCommandes = new ArrayCollection();
@@ -115,6 +124,42 @@ class Commande
                 $detailCommande->setCommande(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUserId(): ?int
+    {
+        return $this->userId;
+    }
+
+    public function setUserId(int $userId): self
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    public function getAdresseId(): ?int
+    {
+        return $this->adresseId;
+    }
+
+    public function setAdresseId(int $adresseId): self
+    {
+        $this->adresseId = $adresseId;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
 
         return $this;
     }
