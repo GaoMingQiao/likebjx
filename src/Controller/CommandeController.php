@@ -21,23 +21,11 @@ class CommandeController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_commande_new', methods: ['GET', 'POST'])]
+    #[Route('/new/{idAdresse}', name: 'app_commande_new', methods: ['GET', 'POST'])]
     public function new(Request $request, CommandeRepository $commandeRepository): Response
     {
-        $commande = new Commande();
-        $form = $this->createForm(CommandeType::class, $commande);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $commandeRepository->save($commande, true);
-
-            return $this->redirectToRoute('app_commande_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('commande/new.html.twig', [
-            'commande' => $commande,
-            'form' => $form,
-        ]);
+        $idAdresse = $request->attributes->get("idAdresse");
+        return  new Response("<h1>$idAdresse </h1>");
     }
 
     #[Route('/{id}', name: 'app_commande_show', methods: ['GET'])]

@@ -72,9 +72,9 @@
 <script>
     $( document ).ready(function() {
         $("#valideAdresse").click(function(){
-           var radioChecked = $("input[name='flexRadioDefault']:checked").val();
-           if(radioChecked){
-              alert("Ok");
+           var valueIdAdresseChecked = $("input[name='flexRadioDefault']:checked").val();
+           if(valueIdAdresseChecked){
+                window.location.href = "{{ path('app_commande_new', {idAdresse : 6} ) }}";
            }else{
               alert("not");
            }
