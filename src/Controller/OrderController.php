@@ -33,12 +33,14 @@ class OrderController extends AbstractController
         $commande->setDatetime($date);
         $commande->setAdresseId($adresseId);
         $commande->setStatut('not_paid');
+
         $doctrine->getManager()->persist($commande);
         $doctrine->getManager()->flush($commande);
         
         
         return $this->render('order/add.html.twig', [
             'adresse' => $adresseId,
+            
         ]);
     }
 }
