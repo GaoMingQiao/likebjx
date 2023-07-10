@@ -33,7 +33,12 @@
        
           <tr>
                 <td>
-                    <div class="form-check"><input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="{{adresse.id }}">
+                    <div class="form-check">
+                      <input class="form-check-input" 
+                        type="radio" 
+                        name="flexRadioDefault" 
+                        value="{{adresse.id }}"
+                        data-url = "{{ path('commande_new',{'adresseId': adresse.id }) }}" >
                       {# <label class="form-check-label" for="flexRadioDefault1"></label> #}
                     </div>
                 </td>
@@ -44,6 +49,7 @@
                 <td>{{adresse.codePostal }}</td>
                 <td>{{adresse.ville }}</td> 
                 <td><a href="{{ path('adresse_delete', {'id': adresse.id}) }}">supprimer</a></td> 
+                {{ dump(adresse)}}
             </tr> 
   {% endfor %}
   {% endif %}
@@ -54,17 +60,18 @@
 {% endblock %}
 
 {% block script %}
-
+  <script>
     $( document ).ready(function() {
+      $("#valideAdresse").unbind("click");
         $("#valideAdresse").click(function(){
            var valueIdAdresseChecked = $("input[name='flexRadioDefault']:checked").val();
            if(valueIdAdresseChecked){
-                window.location.href = "{{ path('commande_new',{id:adresseId}) }}";
+            var route =  $("input[name='flexRadioDefault']:checked").data("url");
+            window.location.href = route;
            }else{
               alert("Veuillez choisir votre adresse de livraison.");
            }
         });
     });
-
-
+  </script>
 {% endblock %}
