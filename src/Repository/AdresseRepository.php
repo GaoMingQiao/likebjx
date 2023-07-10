@@ -32,6 +32,7 @@ class AdresseRepository extends ServiceEntityRepository
 
     public function remove(Adresse $entity, bool $flush = false): void
     {
+        var_dump('aaaa');
         $this->getEntityManager()->remove($entity);
 
         if ($flush) {

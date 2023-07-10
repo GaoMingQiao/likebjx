@@ -24,9 +24,9 @@ class OrderController extends AbstractController
             'controller_name' => 'OrderController',
         ]);
     }
-    #[Route('/commande/new/{id}', name: 'commande_new')]
+    #[Route('/commande/new/{adresseId}', name: 'commande_new')]
     public function newCommande(ManagerRegistry $doctrine,Request $request): Response
-    {   $adresseId = $request->query->get('adresseId');
+    {   $adresseId = $request->attributes->get('adresseId');
         $date = new \DateTime();
         $commande = new Commande();
         $commande->setUser($this->getUser());
@@ -34,6 +34,7 @@ class OrderController extends AbstractController
         $commande->setAdresseId($adresseId);
         $commande->setStatut('not_paid');
         $doctrine->getManager()->persist($commande);
+        $doctrine->getManager()->flush($commande);
         
         
         return $this->render('order/add.html.twig', [
