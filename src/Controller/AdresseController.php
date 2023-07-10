@@ -59,8 +59,8 @@ class AdresseController extends AbstractController
             'adresse'=>$adresse
         ]);
     }
-    #[Route('/adresse/delete/{id}', name: 'adresse_delete', methods: ['GET', 'POST'])]
-    public function delete(Request $request, Adresse $adresse, AdresseRepository $adresseRepository): Response
+    #[Route('/adresse/delete/form/{id}', name: 'adresse_delete_form', methods: ['POST'])]
+    public function deleteForm(Request $request, Adresse $adresse, AdresseRepository $adresseRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$adresse->getId(), $request->request->get('_token'))) {
             $adresseRepository->remove($adresse, true);
@@ -68,6 +68,15 @@ class AdresseController extends AbstractController
 
         return $this->redirectToRoute('app_adresse', [], Response::HTTP_SEE_OTHER);
     }
-
+    
+    #[Route('/adresse/delete/ajax/{id}', name: 'adresse_delete_ajax', methods: ['GET', 'POST'])]
+    public function deleteAjax(Request $request, Adresse $adresse, AdresseRepository $adresseRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$adresse->getId(), $request->request->get('_token'))) {
+            $adresseRepository->remove($adresse, true);
+            return $this->json(['successe'=> true], 200);
+        }
+        return $this->json(['successe'=> false], 403 );
+    }
     
 }
