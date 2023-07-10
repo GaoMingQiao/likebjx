@@ -40,7 +40,7 @@ class AdresseController extends AbstractController
     //     $adresses = $this->getUser()->getAdresse()->getValues();
     // }
 
-    #[Route('/adresse/add', name:'adresse_add')]
+    #[Route('/adresse/new', name:'adresse_new')]
     public function addAdressse(Request $request, AdresseRepository $adresseRepo)
     {
         $adresse = new Adresse();
@@ -54,10 +54,19 @@ class AdresseController extends AbstractController
 
 
         
-        return $this->render('adresse/add.html.twig',[
+        return $this->render('adresse/new.html.twig',[
             'form'=>$form->createView(),
             'adresse'=>$adresse
         ]);
+    }
+    #[Route('/adresse/delete/{id}', name: 'adresse_delete', methods: ['GET', 'POST'])]
+    public function delete(Request $request, Adresse $adresse, AdresseRepository $adresseRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$adresse->getId(), $request->request->get('_token'))) {
+            $adresseRepository->remove($adresse, true);
+        }
+
+        return $this->redirectToRoute('app_adresse', [], Response::HTTP_SEE_OTHER);
     }
 
     

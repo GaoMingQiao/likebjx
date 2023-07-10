@@ -10,6 +10,7 @@
 </p>
 {% else %}
 <div class="container my-4">
+  <a type="button" class="btn btn-success" href="{{ path('adresse_new')}}">Ajouter mon adresse</a>
   <h1>Mes adresses</h1>
 
 <table class="table">
@@ -42,44 +43,28 @@
                 <td>{{adresse.complement }}</td>
                 <td>{{adresse.codePostal }}</td>
                 <td>{{adresse.ville }}</td> 
-                <td>ACTION</td> 
+                <td><a href="{{ path('adresse_delete', {'id': adresse.id}) }}">supprimer</a></td> 
             </tr> 
   {% endfor %}
-       
-       
-     
-      
-      
-  
-
-
-                    {# <td>
-                    <a href="{{ path('app_admin_category_show', {'id': adresse.id}) }}">edit</a>
-                    <a href="{{ path('app_admin_category_edit', {'id': adresse.id}) }}">delete</a>
-                   </td>
-         
-         #}
-
-
-{% endif %}
+  {% endif %}
     </tbody>
 </table>
-<a type="button" class="btn btn-success" id="valideAdresse">Choisir son adresse.</a>
+<a type="button" class="btn btn-success" id="valideAdresse">Choisir mon adresse</a>
 </div>
 {% endblock %}
 
-{% block javascripts %}
-<script>
+{% block script %}
+
     $( document ).ready(function() {
         $("#valideAdresse").click(function(){
            var valueIdAdresseChecked = $("input[name='flexRadioDefault']:checked").val();
            if(valueIdAdresseChecked){
-                window.location.href = "{{ path('app_commande_new', {idAdresse : 6} ) }}";
+                window.location.href = "{{ path('commande_new',{id:adresseId}) }}";
            }else{
-              alert("not");
+              alert("Veuillez choisir votre adresse de livraison.");
            }
         });
     });
-</script>
+
 
 {% endblock %}

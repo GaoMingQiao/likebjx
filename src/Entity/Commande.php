@@ -22,8 +22,7 @@ class Commande
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $datetime = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $montantTotal = null;
+    
 
     #[ORM\ManyToOne(inversedBy: 'commande')]
     private ?User $user = null;
@@ -74,17 +73,7 @@ class Commande
         return $this;
     }
 
-    public function getMontantTotal(): ?int
-    {
-        return $this->montantTotal;
-    }
-
-    public function setMontantTotal(?int $montantTotal): self
-    {
-        $this->montantTotal = $montantTotal;
-
-        return $this;
-    }
+   
 
     public function getUser(): ?User
     {
