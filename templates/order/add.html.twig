@@ -1,1 +1,80 @@
-{{ dump() }}
+ 
+{% extends 'base.html.twig' %}
+{% block title %}
+    Recap de commande
+{% endblock %}
+{% block body %}
+{{ dump() }} 
+<div class="row">
+    <div class="col-md-6">
+        
+        <div class="form-check">
+            <div class="card text-white bg-info my-5" style="max-width: 45%;">
+                <div class="card-header">Mon adresse de livraison</div>
+                <div class="card-body">
+                  <h5 class="card-title">nom : {{adresse.user.nom|upper}}</h5>
+                  <h5 class="card-title">prenom : {{adresse.user.prenom|capitalize}}</h5>
+                  <p class="card-text">{{ adresse.adresse}}</p>
+                  <p class="card-text">{{ adresse.complement}}</p>
+                  <p class="card-text">{{ adresse.codePostal}}</p>
+                  <p class="card-text">{{ adresse.ville}}</p>
+                </div>
+              </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="text-center">
+            <b>Récap de ma commande</b><br/>
+            <b>Date : {{ date|date("d/m/Y") }}</b><br/>
+            
+
+            <p>Retrouvez le récepitulatif de vos produits</p>
+
+        </div>
+        <div class="order-summary">
+            <table class="table">
+                <thead>
+                  <tr>
+                    
+                    <th scope="col">Titre</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Total</th>
+                  
+                  </tr>
+                </thead>
+            
+                <tbody>
+                    {% for row in rows %}
+                  <tr>
+                   
+                    <td>{{ row.product.nom }}</td>
+                    <td>{{ row.product.prix|default('-') }}</td>
+                    <td>{{ row.quantity}}</td>
+                    <td>{{ row.product.prix*row.quantity }}</td>
+                    
+                  </tr>
+                  {% endfor %}
+                  
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3"><strong>Montant total de la commande:</td></strong>
+                        {# <td>{{ totalQuantity }}</td> #}
+                        <td>{{ total }}€</td> <br/>
+                        <td>
+                            <form action="/checkout" method="post">
+                                <a type="submit" class="btn btn-success" href="{{ path("payment_checkout")}}">payer ma commande</a>
+                            </form>
+                        </td>
+                    </tr>
+                </tfoot>
+            
+            
+            
+                </table>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

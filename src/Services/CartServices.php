@@ -4,7 +4,7 @@ namespace App\Services;
 use App\Repository\ProduitRepository;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class PanierServices{
+class Cart{
     private $session;
     private $repoProduit;
     public function __construct(SessionInterface $session, ProduitRepository $repoProduit)
@@ -12,6 +12,7 @@ class PanierServices{
         $this->session = $session;
         $this->repoProduit = $repoProduit;
     }
+    
     public function getCart()
     {
         return $this->session->get('cart',[]);
