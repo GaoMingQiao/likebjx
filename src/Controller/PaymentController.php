@@ -57,8 +57,13 @@ class PaymentController extends AbstractController
     }
 
     #[Route("/payment/success", name:"success_url")]
-    public function successUrl()
-    {
+    public function successUrl(SessionInterface $session, ManagerRegistry $doctrine)
+    {   
+        $session->get('panier')->remove();
+        // $commande->setStatut('paid');
+        $doctrine->getManager()->flush;
+
+
         return $this->render("payment/success.html.twig");
     }
     
