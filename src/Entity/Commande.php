@@ -24,10 +24,10 @@ class Commande
 
     
 
-    #[ORM\ManyToOne(inversedBy: 'commande')]
+    #[ORM\ManyToOne(inversedBy: 'commande',fetch: "EAGER")]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: DetailCommande::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: DetailCommande::class, orphanRemoval: true , fetch: "EAGER")]
     private Collection $detailCommandes;
 
     #[ORM\Column]

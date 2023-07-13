@@ -21,16 +21,27 @@ class OrderController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {  
         $commandes = $doctrine->getRepository(Commande::class)->findAll();
+      
+        
+        
+      
         return $this->render('order/index.html.twig', [
             'commandes' => $commandes
+          
+          
         ]);
+    
     }
     #[Route('/commande/show/{id}', name: 'commande_show')]
     public function show(ManagerRegistry $doctrine,$id): Response
     {  
         $commande = $doctrine->getRepository(Commande::class)->find($id);
+        $detailCommandes = $commande->getDetailCommandes();
+        foreach($commande->getDetailCommandes() as $detailCommande)
         return $this->render('order/show.html.twig', [
-            'commande' => $commande
+             'commande' => $commande,
+            'detailCommandes'=>$detailCommandes,
+            'user'=>$commande->getUser()
         ]);
     }
     #[Route('/commande/new/{adresseId}', name: 'commande_new')]
