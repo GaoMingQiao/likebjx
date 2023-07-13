@@ -20,14 +20,10 @@ class OrderController extends AbstractController
     #[Route('/commande/list', name: 'commande_list')]
     public function index(ManagerRegistry $doctrine): Response
     {  
-        $commandes = $doctrine->getRepository(Commande::class)->findAll();
-      
-        
-        
+        $commandes = $doctrine->getRepository(Commande::class)->findAll([], array('id'=>'asc'), null, null);
       
         return $this->render('order/index.html.twig', [
             'commandes' => $commandes
-          
           
         ]);
     

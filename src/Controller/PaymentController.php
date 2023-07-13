@@ -59,6 +59,7 @@ class PaymentController extends AbstractController
     #[Route("/payment/success", name:"success_url")]
     public function successUrl(SessionInterface $session, ManagerRegistry $doctrine)
     {   
+        $commande = $doctrine->getRepository(Commande::class)->
         $session->get('panier')->remove();
         // $commande->setStatut('paid');
         $doctrine->getManager()->flush;
