@@ -1,31 +1,54 @@
 {% extends 'base.html.twig' %}
 
+{% block stylePage %}
+<style>
+    th {
+        background-color: var(--bs-gray-200) !important;
+        position: sticky;
+        top: 0; /* Don't forget this, required for the stickiness */
+        box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    }
+</style>
+{% endblock %}
+
 {% block title %}Commande List{% endblock %}
 
 {% block body %}
+
     <h1>Commande List</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Id commande</th>
+                <th>Id user</th>
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Date</th>
                 <th>Adresse de livraison</th>
-                <th>statut</th>
-                <th>action</th>
+                <th>Ville </th>
+                <th>Statut</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
         {% for commande in commandes %}
-        {# {{ dump()}} #}
+        {{ dump(commande)}}
             <tr>
                 <td>{{ commande.id }}</td>
+                <td>{{ commande.user.id }}
                 <td>{{ commande.user.nom }}
                 <td>{{ commande.user.prenom }}</td>
                 <td>{{ commande.datetime|date("d/m/Y") }}</td>
-                <td>{{ commande.adresseId }}</td>
+                <td>
+                <strong>{{ commande.adresseId }}</strong>
+                        {{ dump(commande.adresse) }}
+                </td>
+                <td>
+                    {% for adr in commande.user.adresse %}
+                        <strong> {{ adr.id}}</strong> , {{ adr.adresse}} ,{{ adr.ville}}<hr>
+                    {% endfor %}
+                </td>
                 {# <td>{{ commande.detailCommandes }}</td> #}
                 <td>{{ commande.statut }}</td>
                 <td>

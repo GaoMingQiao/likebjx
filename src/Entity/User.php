@@ -34,7 +34,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commande::class)]
     private Collection $commande;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Adresse::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Adresse::class,fetch: "EAGER")]
     private Collection $adresse;
 
     #[ORM\Column(length: 255)]

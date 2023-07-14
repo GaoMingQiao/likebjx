@@ -22,12 +22,19 @@ class Commande
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $datetime = null;
 
-    
-
-    #[ORM\ManyToOne(inversedBy: 'commande')]
+    #[ORM\ManyToOne(inversedBy: 'commande',fetch: "EAGER")]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: DetailCommande::class, orphanRemoval: true)]
+
+
+    #[ORM\ManyToOne(fetch: "EAGER")]
+    // #[ORM\JoinColumn(name: "adresse_id", referencedColumnName : "id")] 
+    private ?Adresse $adresse = null;
+
+
+
+
+    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: DetailCommande::class, orphanRemoval: true , fetch: "EAGER")]
     private Collection $detailCommandes;
 
     #[ORM\Column]
@@ -149,6 +156,18 @@ class Commande
     public function setStatut(string $statut): self
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?Adresse
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(Adresse $adresse): self
+    {
+        $this->adresse = $adresse;
 
         return $this;
     }
