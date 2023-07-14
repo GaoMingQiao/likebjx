@@ -13,7 +13,7 @@ class DetailCommande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToOne(inversedBy: 'detailCommandes')]
+    #[ORM\ManyToOne(inversedBy: 'detailCommandes',fetch:"EAGER")]
     #[ORM\JoinColumn(nullable: false)]
     private ?Commande $commande = null;
 
