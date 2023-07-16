@@ -199,7 +199,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
     public function __toString()
     {
-        return $this->email;
+        return $this->nom." ".$this->prenom;
     }
 
     public function getNom(): ?string

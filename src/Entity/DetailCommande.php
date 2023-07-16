@@ -13,14 +13,7 @@ class DetailCommande
     #[ORM\Column]
     private ?int $id = null;
 
-<<<<<<< HEAD
     #[ORM\ManyToOne(inversedBy: 'detailCommandes',fetch:"EAGER")]
-=======
-    #[ORM\Column]
-    private ?int $commande_id = null;
-
-    #[ORM\ManyToOne(inversedBy: 'detailCommandes')]
->>>>>>> 1566387c2190268645ece1b9d70f3672595f5479
     #[ORM\JoinColumn(nullable: false)]
     private ?Commande $commande = null;
 

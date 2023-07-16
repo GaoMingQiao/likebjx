@@ -37,6 +37,7 @@ class OrderController extends AbstractController
         return $this->render('order/show.html.twig', [
              'commande' => $commande,
             'detailCommandes'=>$detailCommandes,
+            'detailCommande'=>$detailCommande,
             'user'=>$commande->getUser()
         ]);
     }

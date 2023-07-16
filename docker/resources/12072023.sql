@@ -79,7 +79,7 @@ CREATE TABLE `commande` (
   `numero` varchar(255) DEFAULT NULL,
   `datetime` datetime DEFAULT NULL,
   `user_id` int(11) NOT NULL,
-  `adresse_id` int(11) NOT NULL,
+  `adresse_id` int(11)  NULL,
   `statut` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
