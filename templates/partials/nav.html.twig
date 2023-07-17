@@ -1,6 +1,4 @@
-
-
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand text-warning fw-bold" ><img src="{{asset('image/LIKE.png')}}" width= "150px" alt=""></a>
 
@@ -77,8 +75,7 @@
               <i class="fa fa-shopping-cart"></i>
                
               <span class="badge badge-icon">
-                {{ app.session.get('panier')?app.session.get('panier')|length:'0'}}
-
+                {{ app.session.get('panier') ? app.session.get('panier')|reduce((carry, v) => carry + v) :'0'}}
               </span>
             </a>
           </div>

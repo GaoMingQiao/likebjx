@@ -63,9 +63,7 @@
                         {# <td>{{ totalQuantity }}</td> #}
                         <td>{{ total }}€</td> <br/>
                         <td>
-                            <form action="/checkout" method="post">
-                                <a type="submit" class="btn btn-success" href="{{ path("payment_checkout")}}">payer ma commande</a>
-                            </form>
+                            <a type="submit" class="btn btn-success" href="{{ path("payment_checkout" , { idComannde : idCommande })}}">payer ma commande</a>
                         </td>
                     </tr>
                 </tfoot>

@@ -28,10 +28,7 @@ class Commande
 
 
     #[ORM\ManyToOne(fetch: "EAGER")]
-    // #[ORM\JoinColumn(name: "adresse_id", referencedColumnName : "id")] 
     private ?Adresse $adresse = null;
-
-
 
 
     #[ORM\OneToMany(mappedBy: 'commande', targetEntity: DetailCommande::class, orphanRemoval: true , fetch: "EAGER")]

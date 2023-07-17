@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../Prixan/prixan-api"
+		}
+	],
+	"settings": {
+		"workbench.editor.wrapTabs": true
+	}
+}

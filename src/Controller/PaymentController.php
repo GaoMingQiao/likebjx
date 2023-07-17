@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Commande;
 use Stripe\Stripe;
 
 use App\Entity\Produit;
@@ -13,14 +13,16 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 class PaymentController extends AbstractController
 {
-    #[Route("/checkout", name:"payment_checkout")]
-    public function checkout(SessionInterface $session, ManagerRegistry $doctrine)
+    #[Route("/checkout/{idComannde}", name:"payment_checkout")]
+    public function checkout(SessionInterface $session, ManagerRegistry $doctrine, Request $request)
     {
        Stripe::setApiKey("sk_test_51NBHiULSS5c6cm1cRSRYVgWrrdgEjDzTCR7lYQz5m4W3hKOvIBJux7vKfrm33cH3JUkHX3bMahL1lWiNe6bWnz8E00dFNslVHE");
        
+       $idComannde =  $request->attributes->get("idComannde");
        $panier = $session->get('panier',[]);
        $rows = [];
        foreach($panier as $id=>$quantity)
@@ -47,7 +49,7 @@ class PaymentController extends AbstractController
        $session = Session::create([
         'line_items' =>$line_items,
         'mode' => 'payment',
-        'success_url' => $this->generateUrl('success_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
+        'success_url' => $this->generateUrl('success_url', ["idCommande"=>$idComannde], UrlGeneratorInterface::ABSOLUTE_URL),
         'cancel_url' => $this->generateUrl('cancel_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
       ]);
 
@@ -56,15 +58,15 @@ class PaymentController extends AbstractController
       
     }
 
-    #[Route("/payment/success", name:"success_url")]
-    public function successUrl(SessionInterface $session, ManagerRegistry $doctrine)
+    #[Route("/payment/success/{idCommande}", name:"success_url")]
+    public function successUrl(SessionInterface $session, ManagerRegistry $doctrine, Request $request)
     {   
-        $commande = $doctrine->getRepository(Commande::class)->
-        $session->get('panier')->remove();
-        // $commande->setStatut('paid');
-        $doctrine->getManager()->flush;
-
-
+        $idCommande = $request->attributes->get("idCommande");
+        $commande = $doctrine->getRepository(Commande::class)->findOneBy(["id"=> $idCommande ]);
+        $commande->setStatut('paid');
+        $doctrine->getManager()->persist( $commande);
+        $doctrine->getManager()->flush();
+        $session->set('panier',[]);
         return $this->render("payment/success.html.twig");
     }
     

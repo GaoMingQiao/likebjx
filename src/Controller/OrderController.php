@@ -20,11 +20,11 @@ class OrderController extends AbstractController
     #[Route('/commande/list', name: 'commande_list')]
     public function index(ManagerRegistry $doctrine): Response
     {  
-        $commandes = $doctrine->getRepository(Commande::class)->findAll([], array('id'=>'asc'), null, null);
+        $idUser = $this->getUser()->getId();
+        $commandes = $doctrine->getRepository(Commande::class)->findBy(["userId"=>$idUser], array('id'=>'asc'), null, null);
       
         return $this->render('order/index.html.twig', [
             'commandes' => $commandes
-          
         ]);
     
     }
@@ -44,20 +44,19 @@ class OrderController extends AbstractController
     #[Route('/commande/new/{adresseId}', name: 'commande_new')]
     public function newCommande(ManagerRegistry $doctrine,Request $request, SessionInterface $session): Response
     {   $adresseId = $request->attributes->get('adresseId');
+        $adresse = $doctrine->getRepository(Adresse::class)->find($adresseId);
+        
         $date = new \DateTime();
         $commande = new Commande();
         $commande->setUser($this->getUser());
         $commande->setDatetime($date);
         $commande->setAdresseId($adresseId);
         $commande->setStatut('not_paid');
-
+        $commande->setAdresse($adresse);
         $doctrine->getManager()->persist($commande);
-        
-        $adresse = $doctrine->getRepository(Adresse::class)->find($adresseId);
-
-        $panier = $session->get('panier',[]);
         $rows = [];
         $total = 0;
+        $panier = $session->get('panier',[]);
         foreach($panier as $id=>$quantity)
         {
             $rows[] = [
@@ -74,28 +73,15 @@ class OrderController extends AbstractController
             $total = $total + $produit->getPrix()*$quantity;
             $doctrine->getManager()->persist($detailCommande);
             
-
-            
-
-            
-
-            // $detailCommande->setProduit($value['quantity']);
-            // $detailCommande->setProduit($value['product']->getPrix());
-            // $detailCommande->setTotal($value['product']->getPrix()*$value['quantity']);
-            // $doctrine->getManager()->persist($detailCommande);
         }
-
-         $doctrine->getManager()->flush();
-        
+        $doctrine->getManager()->flush();
+        $idCommande = $commande->getId();
         return $this->render('order/add.html.twig', [
             'adresse' => $adresse,
             "rows"=>$rows,
             "date"=> $date = new \DateTime(),
-            "total"=>$total
-           
-
-      
-            
+            "total"=>$total,
+            "idCommande"=>$idCommande
         ]);
     }
 }
