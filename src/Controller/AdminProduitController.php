@@ -31,11 +31,9 @@ class AdminProduitController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $produitRepository->save($produit, true);
-
             return $this->redirectToRoute('app_admin_produit_index', [], Response::HTTP_SEE_OTHER);
         }
-
-        return $this->renderForm('admin_produit/new.html.twig', [
+            return $this->renderForm('admin_produit/new.html.twig', [
             'produit' => $produit,
             'form' => $form,
         ]);
@@ -57,11 +55,9 @@ class AdminProduitController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $produitRepository->save($produit, true);
-
             return $this->redirectToRoute('app_admin_produit_index', [], Response::HTTP_SEE_OTHER);
         }
-
-        return $this->renderForm('admin_produit/edit.html.twig', [
+            return $this->renderForm('admin_produit/edit.html.twig', [
             'produit' => $produit,
             'form' => $form,
         ]);

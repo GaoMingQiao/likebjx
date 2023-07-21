@@ -33,7 +33,7 @@
            value="{{ csrf_token('authenticate') }}"
     >
 <div class="m-link">
-    <a>J'ai perdu mon mot de passe</a>
+    <a href="{{ path('app_forgot_password_request')}}">J'ai perdu mon mot de passe</a>
 </div>
     
     {#

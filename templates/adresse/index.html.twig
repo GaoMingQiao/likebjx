@@ -41,7 +41,6 @@
                         name="flexRadioDefault" 
                         value="{{adresse.id }}"
                         data-url = "{{ path('commande_new',{'adresseId': adresse.id }) }}">
-                      {# <label class="form-check-label" for="flexRadioDefault1"></label> #}
                     </div>
                 </td>
                 <td>{{adresse.user.nom }}</td>
@@ -55,11 +54,11 @@
                       <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ adresse.id) }}">
                       <button class="btn btn-outline-warning">Delete FORM</button>
                   </form>
-                  <button type="button" 
+                  {# <button type="button" 
                           class="btn btn-outline-warning deleteAjax"  
                           data-url = "{{ path('adresse_delete_ajax', {'id': adresse.id}) }}"  
                           data-token = "{{ csrf_token('delete' ~ adresse.id) }}">Delete AJAX
-                  </button>
+                  </button> #}
                   <br>
                 </td> 
                 
@@ -74,17 +73,17 @@
 
 {% block script %}
 <script>
-
+    //jquery
     $( document ).ready(function() {
-      $("#valideAdresse").unbind("click");
+      //on appuie sur le bouton "Choisir mon adresse"
         $("#valideAdresse").click(function(){
+          //on obtient la valeur du bouton radio et la met dans une variable
            var valueIdAdresseChecked = $("input[name='flexRadioDefault']:checked").val();
-           
+           //s'il a été coché, on sera redigé sur une nouvelle route
            if(valueIdAdresseChecked){
             var route =$("input[name='flexRadioDefault']:checked").data("url");
-                
                 window.location.href = route;
-                
+               // si ce bouton de radio n'etait pas coché, on demande au client de le cocher 
            }else{
               alert("Veuillez choisir votre adresse de livraison.");
            }

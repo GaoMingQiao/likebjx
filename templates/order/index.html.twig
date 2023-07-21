@@ -20,20 +20,23 @@
     <table class="table">
         <thead>
             <tr>
+           
                 <th>Id commande</th>
                 <th>Id user</th>
+         
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Date</th>
                 <th>Adresse de livraison</th>
-                <th>Ville </th>
+               
                 <th>Statut</th>
                 <th>Action</th>
+          
             </tr>
         </thead>
         <tbody>
         {% for commande in commandes %}
-        {{ dump(commande)}}
+      
             <tr>
                 <td>{{ commande.id }}</td>
                 <td>{{ commande.user.id }}
@@ -41,14 +44,17 @@
                 <td>{{ commande.user.prenom }}</td>
                 <td>{{ commande.datetime|date("d/m/Y") }}</td>
                 <td>
-                <strong>{{ commande.adresseId }}</strong>
-                        {{ dump(commande.adresse) }}
+                <p>{{ commande.adresse.adresse}}</p>
+                <p>{{ commande.adresse.complement}}</p>
+                <p>{{ commande.adresse.codePostal}}</p>
+                <p>{{ commande.adresse.ville}}</p>
+                         {# {{ dump(commande.adresse) }}  #}
                 </td>
-                <td>
+                {# <td>
                     {% for adr in commande.user.adresse %}
                         <strong> {{ adr.id}}</strong> , {{ adr.adresse}} ,{{ adr.ville}}<hr>
                     {% endfor %}
-                </td>
+                </td> #}
                 {# <td>{{ commande.detailCommandes }}</td> #}
                 <td>{{ commande.statut }}</td>
                 <td>

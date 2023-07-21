@@ -33,3 +33,6 @@ span.current-price{
   margin-top: 3rem;
   margin-bottom: 3rem;
 }
+.product-thumbnail{
+  width:150px;
+}

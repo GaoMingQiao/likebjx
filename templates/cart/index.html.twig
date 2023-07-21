@@ -4,7 +4,7 @@
 
 
 {% block body %}
-{{ dump()}}
+{# {{ dump()}} #}
 <div class="container my-4">
 
 <h1>Votre panier</h1>
@@ -18,7 +18,7 @@
 <table class="table">
     <thead>
       <tr>
-        <th scope="col">ID</th>
+        <th scope="col"></th>
         <th scope="col">Titre</th>
         <th scope="col">Prix</th>
         <th scope="col">Quantité</th>
@@ -30,7 +30,7 @@
     <tbody>
         {% for row in rows %}
       <tr>
-        <th scope="row">{{ row.product.id }}</th>
+        <th scope="row"><img class="product-thumbnail" src="/images/produits/{{row.product.imageName}}" alt="bijoux" }} /></th>
         <td>{{ row.product.nom }}</td>
         <td>{{ row.product.prix|default('-') }}</td>
         <td>{{ row.quantity}}</td>
