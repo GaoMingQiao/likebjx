@@ -16,7 +16,7 @@
       <p class="lead my-3">Tous nos bijoux sont fabriqués à la main avec des pierres naturelles et argent 925, 
         pour le corps,l'âme et l'esprit.
       </p>
-      {# <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Savoir plus...</a></p> #}
+   
     </div>
   </div>
 
@@ -78,12 +78,12 @@
   </div>
 
   
-  <div class="jumbotron">
+  {# <div class="jumbotron">
     <div class="container">
       <h1 class="display-3">LES NOUVEAUTES</h1>
       
       
-  </div>
+  </div> #}
     {# nouveautés #}
   <div class="container">
     <!-- Example row of columns -->
@@ -91,7 +91,8 @@
      {{ render(controller(
       'App\\Controller\\ProduitController::produitLatest',
       { }
-  )) }}
+  )) }} 
+
      
     </div>
     

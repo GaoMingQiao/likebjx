@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Adresse;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,8 +14,10 @@ class UserController extends AbstractController
     #[Route('/admin/user', name: 'user_list')]
     public function index(ManagerRegistry $doctrine): Response
     {   $users = $doctrine->getRepository(User::class)->findAll();
+        // $adresse = $doctrine->getRepository(Adresse::class)->findAll();
         return $this->render('user/index.html.twig', [
             'users' => $users,
+            // 'adresse'=>$adresse
         ]);
     }
     #[Route('/admin/user/delete/{id}', name: 'user_delete')]

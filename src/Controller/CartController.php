@@ -69,7 +69,7 @@ class CartController extends AbstractController
         $this->addFlash('message',"Merci pour votre achat:) le produit a bien été ajouté à votre panier.");
 
         // dd($session->get('panier',[]));
-        return $this->redirectToRoute('produit_list');
+        return $this->redirectToRoute('app_cart');
     }
 
     #[Route("/cart/delete/{id}", name:"cart_delete")]

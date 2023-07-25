@@ -6,16 +6,8 @@
 
 {% block body %}
 
-{% for message in app.flashes('message') %}
-
-<div class="alert alert-warning" role="alert">
-    <strong>{{ message }}</strong>
-</div>
-    
-{% endfor %}
-
 <div class="my-5 text-center">
-      <h1>Tous nos produits</h1>
+      <h1>Vos produits recherchés</h1>
 </div>
         <!-- Section-->
         <section class="py-5">
@@ -57,7 +49,7 @@
                     {% endfor %}
                     
                 </div>
-                {{ knp_pagination_render(produits) }}
+            
             </div>
         </section>
    

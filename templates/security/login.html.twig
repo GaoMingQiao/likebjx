@@ -6,13 +6,13 @@
 
 
 
-<div class="container my-5">
+<div class="container my-5 form-group">
 
-    <a href="{{path('app_register')}}" class="btn btn-primary btn-lg my-5">S'inscrire</a>
+    <a href="{{path('app_register')}}" class="btn btn-info btn-lg my-5">S'inscrire</a>
 
 
 
-<form method="post">
+  <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -47,7 +47,7 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
+    <button class="btn btn-lg btn-info" type="submit">
         Se connnecter
     </button>
 </form>

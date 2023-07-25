@@ -36,7 +36,10 @@
         <td>{{ row.quantity}}</td>
         <td>{{ row.product.prix*row.quantity }}</td>
         <td>
-            <a class="btn btn-danger" onclick="return confirm('Supprimer cet article du panier?');" href="{{path('cart_delete',{id:row.product.id})}}"> <i class="fa fa-trash" ></i></a>
+            <a class="btn btn-danger" onclick="return confirm('Supprimer un article du panier?');" href="{{path('cart_delete',{id:row.product.id})}}"> <i class="fa fa-trash" ></i></a>
+        <hr>
+            <a class="btn btn-success"  href="{{path('cart_add',{id:row.product.id})}}">
+               <i class="fa fa-plus" ></i></a>
         </td>
       </tr>
       {% endfor %}

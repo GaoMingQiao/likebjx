@@ -13,7 +13,8 @@ class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
     public function index(ManagerRegistry $doctrine): Response
-    {   $categories = $doctrine->getRepository(Category::class)->findAll();
+    {   
+        $categories = $doctrine->getRepository(Category::class)->findAll();
         return $this->render('home/index.html.twig', [
             'categories' => $categories
         ]);

@@ -41,13 +41,14 @@ class ProduitRepository extends ServiceEntityRepository
     /**
     * @return Produit[] Returns an array of Produit objects
     */
-   public function findByPrix($prix): array
+   public function findBySearch($search): array
    {
        return $this->createQueryBuilder('p')
-           ->andWhere('p.prix = :val')
-           ->setParameter('val', $prix)
-           ->orderBy('p.id', 'ASC')
-           ->setMaxResults(10)
+           ->andWhere('p.nom LIKE :val')
+           
+           ->setParameter('val',"%$search%")
+        //    ->orderBy('p.id', 'ASC')
+        //    ->setMaxResults(10)
            ->getQuery()
            ->getResult()
        ;

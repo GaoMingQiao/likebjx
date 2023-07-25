@@ -20,8 +20,11 @@ div{
 
 }
 .fa{
-  font-size: 36px !important;
+  font-size: 14px;
   
+}
+.fa-shopping-cart{
+  font-size:36px !important;
 }
 span.current-price{
   color:#e61b80;
@@ -35,4 +38,7 @@ span.current-price{
 }
 .product-thumbnail{
   width:150px;
+}
+.form-group{
+  width:50%;
 }

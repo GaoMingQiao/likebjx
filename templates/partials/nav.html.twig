@@ -84,10 +84,17 @@
           </div>
        
 
-            <form class="d-flex" role="search">
+            {# <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success text-dark" type="submit">Search</button>
+            </form> #}
+
+
+            <form action="{{ path('search')}}" method="get">
+              <input class="" type="text" name="search" placeholder="Rechercher un produit" value="" />
+              <button type="submit">Chercher</button>
             </form>
+
           </div>
         </div>
       </nav>

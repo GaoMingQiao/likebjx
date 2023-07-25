@@ -3,10 +3,13 @@
 {% block title %}Produit index{% endblock %}
 
 {% block body %}
-{{ dump() }} 
+{# {{ dump() }}  #}
 <div class="container">
-<a class="text-danger" href="{{ path('app_admin_produit_new') }}">Create new</a>
-</div>
+    <div class="text-center my-4">
+        <a class="btn btn-info " href="{{ path('app_admin_produit_new') }}">Ajouter un nouveau produit</a>
+    </div>
+
+
 
     <h1>Produit index</h1>
 
@@ -18,9 +21,9 @@
                 <th>Description</th>
                 <th>Prix</th>
                 <th>Stock</th>
-                <th>ImageName</th>
+                <th>Image</th>
                 <th>Category</th>
-                <th>Commande</th>
+              
                 <th>actions</th>
             </tr>
         </thead>
@@ -32,13 +35,16 @@
                 <td>{{ produit.description }}</td>
                 <td>{{ produit.prix }}</td>
                 <td>{{ produit.stock }}</td>
-                <td>{{ produit.imageName }}</td>
+                <th scope="row"><img class="product-thumbnail" src="{{ vich_uploader_asset(produit,'imageFile')}}" alt="bijoux"/></th>
+                {# <td>{{ produit.imageName }}</td> #}
                 <td>{{ produit.category.nom }}</td>
-                {# <td>{{ produit.detailCommandes.id }}</td> #}
+               
                 <td>
-                    <a href="{{ path('app_admin_produit_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('app_admin_produit_edit', {'id': produit.id}) }}">edit</a>
-                    <a href="{{ path('app_admin_produit_delete', {'id': produit.id}) }}">delete</a>
+                    <a class="btn btn-success" href="{{ path('app_admin_produit_show', {'id': produit.id}) }}"><i class="fa fa-eye"></i></a>
+                    <hr>
+                    <a class="btn btn-warning" href="{{ path('app_admin_produit_edit', {'id': produit.id}) }}"><i class="fa fa-edit"></i></a>
+                    <hr>
+                    <a class="btn btn-danger" href="{{ path('app_admin_produit_delete', {'id': produit.id}) }}"><i class="fa fa-trash"></i></a>
                 </td>
             </tr>
         {% else %}
@@ -48,5 +54,6 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
 
 {% endblock %}
