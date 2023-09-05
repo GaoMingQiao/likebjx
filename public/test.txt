@@ -1,0 +1,248 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : 127.0.0.1
+-- Généré le : lun. 04 sep. 2023 à 14:12
+-- Version du serveur : 10.4.27-MariaDB
+-- Version de PHP : 8.2.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données : `likebjx`
+--
+
+--
+-- Déchargement des données de la table `adresse`
+--
+
+INSERT INTO `user` (`id`, `email`, `roles`, `password`, `nom`, `prenom`) VALUES
+(1, 'lili@gmail.com', '[\"ROLE_USER\"]', '$2y$13$apxVU36feNB0VQOKu8ITr.UEBADHIB.IunDYPYgffKNcCYYy50UTW', 'li', 'li'),
+(2, 'gao@gmail.com', '[\"ROLE_USER\"]', '$2y$13$C2GuKFiNL5r52afqFklCpu547WSMFo.h/dATGtyyCQPLWwnLS.O/K', 'gao', 'sylvie'),
+(3, 'zhang@gmail.com', '[\"ROLE_USER\"]', '$2y$13$Iwy5ETa4BdHWb5Hv3jKSY.D9tJh0qz1NkKxMnqnkb7U6fZ/FDpk/W', 'zhang', 'san'),
+(4, 'lisi@gmail.com', '[\"ROLE_ADMIN\"]', '$2y$13$szhsji7w6P1TFEzS.DQMHOzHyH6CLvP.pcLxc2DMq4GVLBAwnRzPG', 'li', 'si'),
+(5, 'lucy@gmail.com', '[\"ROLE_USER\"]', '$2y$13$ASlLkSX4.TGzG6IjE1xJnuFV2.ZoGmbvp8aSeYCePq1zn47DlQJQ2', 'ma', 'lucy'),
+(6, 'gaoleon@gmail.com', '[\"ROLE_USER\"]', '$2y$13$2BnIAwnByo3Acyg/tKNbnu9P9C.dENgbiIIxxhZRuxFESgXbgikpW', 'gao', 'leon'),
+(7, 'gaomingqiao@gmail.Com', '[\"ROLE_USER\"]', '$2y$13$GoeRVCIbPlnBxUHcOUfQMOPIFfW3SlJ/KxSls7Ccm3YZVwH/8ky96', 'gao', 'mingqiao'),
+(8, 'dupont@gmail.com', '[]', '$2y$13$Z4GawAb6VyXiaD2Nf/fIM.YvEbEdYWGq9pRN1qxkLUj/3XTFgWRcC', 'dupont', 'eric'),
+(9, 'pascal@gmail.com', '[]', '$2y$13$JfugdtowKR8Q7fCy7P6u8.yNs.tIupkjQOjWrEQI88AxF01fiu/ye', 'dupont', 'pascal'),
+(10, 'tranquocan@gmail.com', '[]', '$2y$13$94hcjWk8RVsJepFdYQ14vO.gZtAHV/P13BRP1eWiP7T1XUJEJDmh6', 'gao', 'mingqiao');
+COMMIT;
+
+INSERT INTO `adresse` (`id`, `adresse`, `complement`, `code_postal`, `ville`, `user_id`) VALUES
+(1, '84, rue de versailles', NULL, '945000', 'créteil', 1),
+(2, '5, rue de paris', '10, avenue de versailles', '75013', 'paris', 1),
+(5, '11, residence plein sud', '83, avenue de versailles', '94320', 'thiais', 6),
+(8, '55, rue de paris', '10 avenue de france', '75001', 'paris', 4),
+(9, '23, rue de paris', '10, avenue de loupe', '78123', 'conflan', 5),
+(10, '5 voie des meuniers', NULL, '94550', 'chevilly-larue', 7),
+(11, '10, rue de lappe', NULL, '75011', 'paris', 8),
+(12, '52 avenue de choisy', NULL, '94000', 'choisy', 1),
+(13, '25 avenue de pascal', NULL, '75011', 'paris', 9);
+
+--
+-- Déchargement des données de la table `category`
+--
+
+INSERT INTO `category` (`id`, `nom`, `description`, `image_name`) VALUES
+(2, 'Boucles d\'oreilles', 'Portez des boucles d\'oreilles pierres pour libérer toutes leurs vertus.\r\n Une sélection des plus belles Boucles d\'Oreilles en Pierres semi-précieuses et Argent 925.', 'bo-long-649f2ae97d588619927760.jpg'),
+(3, 'Colliers', 'Offrir un collier en argent avec pendentif pierre naturel et argent massif, vous lui offrez un cadeau qui signifie beaucoup.', 'spinel-649f260b9ad8f158669056.jpg'),
+(4, 'Bagues', 'Like vous propose des bagues en argent 925 fabriquées par des artisans indiens ou thaïlandais au savoir-faire ancestral. Montées avec des pierres fines et argent massif.', 'bague-category-649f25e599699781605735.jpg');
+
+--
+-- Déchargement des données de la table `commande`
+--
+
+INSERT INTO `commande` (`id`, `numero`, `datetime`, `user_id`, `adresse_id`, `statut`) VALUES
+(24, NULL, '2023-07-11 16:22:55', 6, 5, 'not_paid'),
+(25, NULL, '2023-07-11 16:24:38', 6, 5, 'not_paid'),
+(26, NULL, '2023-07-11 16:28:37', 6, 5, 'not_paid'),
+(27, NULL, '2023-07-11 16:33:07', 6, 5, 'not_paid'),
+(28, NULL, '2023-07-11 16:37:50', 6, 5, 'not_paid'),
+(29, NULL, '2023-07-11 16:41:05', 6, 5, 'not_paid'),
+(30, NULL, '2023-07-11 16:41:40', 6, 5, 'not_paid'),
+(31, NULL, '2023-07-11 16:43:22', 6, 5, 'not_paid'),
+(32, NULL, '2023-07-11 16:43:53', 6, 5, 'not_paid'),
+(33, NULL, '2023-07-11 16:52:10', 6, 5, 'not_paid'),
+(34, NULL, '2023-07-18 23:04:49', 5, 9, 'paid'),
+(35, NULL, '2023-07-18 23:19:11', 5, 9, 'paid'),
+(36, NULL, '2023-07-19 00:36:15', 4, 8, 'paid'),
+(37, NULL, '2023-07-20 23:14:54', 7, 10, 'paid'),
+(38, NULL, '2023-07-21 18:19:31', 5, 9, 'not_paid'),
+(39, NULL, '2023-07-21 18:22:45', 5, 9, 'not_paid'),
+(40, NULL, '2023-07-21 19:09:18', 5, 9, 'paid'),
+(41, NULL, '2023-07-21 19:22:47', 5, 9, 'not_paid'),
+(42, NULL, '2023-07-21 20:37:10', 5, 9, 'not_paid'),
+(43, NULL, '2023-07-21 20:38:04', 5, 9, 'not_paid'),
+(44, NULL, '2023-07-21 20:38:17', 5, 9, 'not_paid'),
+(45, NULL, '2023-07-21 21:54:17', 6, 5, 'not_paid'),
+(46, NULL, '2023-07-24 21:57:07', 5, 9, 'not_paid'),
+(47, NULL, '2023-07-26 01:32:31', 8, 11, 'not_paid'),
+(48, NULL, '2023-07-26 01:45:12', 1, 2, 'paid'),
+(49, NULL, '2023-07-26 11:52:13', 9, 13, 'paid'),
+(50, NULL, '2023-09-04 11:35:20', 5, 9, 'paid');
+
+--
+-- Déchargement des données de la table `contact`
+--
+
+INSERT INTO `contact` (`id`, `sujet`, `email`, `message`) VALUES
+(1, 'demande prix', 'joe@gmail.com', 'demande prix de bo préhnite'),
+(2, 'demande catalogue', 'joe@gmail.com', 'demande catalogue'),
+(3, 'demande catalogue', 'joe@gmail.com', 'demande catalogue'),
+(4, 'demande contact', 'joe@gmail.com', 'demande contact'),
+(5, 'demande contact', 'joe@gmail.com', 'demande contact'),
+(6, 'demande contact', 'joe@gmail.com', 'demande contact'),
+(7, 'demande contact', 'joe@gmail.com', 'demande contact'),
+(8, 'demande adresse', 'jane@gmail.com', 'demande adresse'),
+(9, 'demande prix', 'joe@gmail.com', 'bonjour'),
+(10, 'demande prix', 'joe@gmail.com', 'demande le prix'),
+(11, 'demande prix', 'joe@gmail.com', 'prix');
+
+--
+-- Déchargement des données de la table `detail_commande`
+--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO `detail_commande` (`id`, `commande_id`, `produit_id`, `quantite`, `total`, `prix`) VALUES
+(1, 24, 6, 1, 80, 80),
+(2, 24, 9, 1, 180, 180),
+(3, 25, 6, 1, 80, 80),
+(4, 25, 9, 1, 180, 180),
+(5, 26, 6, 1, 80, 80),
+(6, 26, 9, 1, 180, 180),
+(7, 27, 6, 1, 80, 80),
+(8, 27, 9, 1, 180, 180),
+(9, 28, 6, 1, 80, 80),
+(10, 28, 9, 1, 180, 180),
+(11, 29, 6, 1, 80, 80),
+(12, 29, 9, 1, 180, 180),
+(13, 30, 6, 1, 80, 80),
+(14, 30, 9, 1, 180, 180),
+(15, 31, 6, 1, 80, 80),
+(16, 31, 9, 1, 180, 180),
+(17, 32, 6, 1, 80, 80),
+(18, 32, 9, 1, 180, 180),
+(19, 33, 6, 1, 80, 80),
+(20, 33, 9, 1, 180, 180),
+(21, 34, 2, 2, 200, 100),
+(22, 34, 11, 1, 120, 120),
+(23, 35, 9, 1, 180, 180),
+(24, 36, 15, 1, 150, 150),
+(25, 37, 13, 1, 150, 150),
+(26, 38, 15, 1, 150, 150),
+(27, 38, 6, 1, 80, 80),
+(28, 39, 15, 1, 150, 150),
+(29, 39, 6, 1, 80, 80),
+(30, 40, 15, 1, 150, 150),
+(31, 40, 6, 1, 80, 80),
+(32, 41, 15, 1, 150, 150),
+(33, 41, 6, 1, 80, 80),
+(34, 42, 15, 1, 150, 150),
+(35, 42, 6, 1, 80, 80),
+(36, 43, 15, 1, 150, 150),
+(37, 43, 6, 1, 80, 80),
+(38, 44, 15, 1, 150, 150),
+(39, 44, 6, 1, 80, 80),
+(40, 45, 5, 1, 150, 150),
+(41, 46, 5, 2, 300, 150),
+(42, 46, 9, 1, 180, 180),
+(43, 46, 2, 1, 100, 100),
+(44, 47, 13, 3, 450, 150),
+(45, 48, 6, 1, 80, 80),
+(46, 49, 13, 2, 300, 150),
+(47, 50, 16, 2, 360, 180);
+
+--
+-- Déchargement des données de la table `doctrine_migration_versions`
+--
+
+INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
+('DoctrineMigrations\\Version20230521224152', '2023-05-22 00:42:14', 275),
+('DoctrineMigrations\\Version20230521224559', '2023-05-22 00:46:10', 181),
+('DoctrineMigrations\\Version20230522184158', '2023-05-22 20:42:31', 86),
+('DoctrineMigrations\\Version20230522184628', '2023-05-22 20:46:39', 131),
+('DoctrineMigrations\\Version20230522202141', '2023-05-22 22:21:58', 14),
+('DoctrineMigrations\\Version20230523085948', '2023-05-23 11:00:04', 91),
+('DoctrineMigrations\\Version20230523120256', '2023-05-23 14:03:57', 43),
+('DoctrineMigrations\\Version20230523121430', '2023-05-23 14:15:06', 127),
+('DoctrineMigrations\\Version20230630212629', '2023-06-30 23:26:59', 85),
+('DoctrineMigrations\\Version20230706074818', '2023-07-06 09:48:35', 112),
+('DoctrineMigrations\\Version20230709222422', '2023-07-10 00:24:31', 231),
+('DoctrineMigrations\\Version20230709222824', '2023-07-10 00:28:32', 31),
+('DoctrineMigrations\\Version20230720210830', '2023-07-20 23:10:42', 211);
+
+--
+-- Déchargement des données de la table `messenger_messages`
+--
+
+INSERT INTO `messenger_messages` (`id`, `body`, `headers`, `queue_name`, `created_at`, `available_at`, `delivered_at`) VALUES
+(1, 'O:36:\\\"Symfony\\\\Component\\\\Messenger\\\\Envelope\\\":2:{s:44:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0stamps\\\";a:1:{s:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\";a:1:{i:0;O:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\":1:{s:55:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\0busName\\\";s:21:\\\"messenger.bus.default\\\";}}}s:45:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0message\\\";O:51:\\\"Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\\":2:{s:60:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0message\\\";O:39:\\\"Symfony\\\\Bridge\\\\Twig\\\\Mime\\\\TemplatedEmail\\\":4:{i:0;s:24:\\\"emails/contact.html.twig\\\";i:1;N;i:2;a:1:{s:7:\\\"contact\\\";O:18:\\\"App\\\\Entity\\\\Contact\\\":4:{s:22:\\\"\\0App\\\\Entity\\\\Contact\\0id\\\";i:1;s:25:\\\"\\0App\\\\Entity\\\\Contact\\0sujet\\\";s:12:\\\"demande prix\\\";s:25:\\\"\\0App\\\\Entity\\\\Contact\\0email\\\";s:13:\\\"joe@gmail.com\\\";s:27:\\\"\\0App\\\\Entity\\\\Contact\\0message\\\";s:28:\\\"demande prix de bo préhnite\\\";}}i:3;a:6:{i:0;N;i:1;N;i:2;N;i:3;N;i:4;a:0:{}i:5;a:2:{i:0;O:37:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\\":2:{s:46:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0headers\\\";a:2:{s:4:\\\"from\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:4:\\\"From\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:13:\\\"joe@gmail.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}s:2:\\\"to\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:2:\\\"To\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:16:\\\"like@monsite.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}}s:49:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0lineLength\\\";i:76;}i:1;N;}}}s:61:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0envelope\\\";N;}}', '[]', 'default', '2023-05-23 11:50:28', '2023-05-23 11:50:28', NULL),
+(2, 'O:36:\\\"Symfony\\\\Component\\\\Messenger\\\\Envelope\\\":2:{s:44:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0stamps\\\";a:1:{s:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\";a:1:{i:0;O:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\":1:{s:55:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\0busName\\\";s:21:\\\"messenger.bus.default\\\";}}}s:45:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0message\\\";O:51:\\\"Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\\":2:{s:60:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0message\\\";O:39:\\\"Symfony\\\\Bridge\\\\Twig\\\\Mime\\\\TemplatedEmail\\\":4:{i:0;s:24:\\\"emails/contact.html.twig\\\";i:1;N;i:2;a:1:{s:7:\\\"contact\\\";O:18:\\\"App\\\\Entity\\\\Contact\\\":4:{s:22:\\\"\\0App\\\\Entity\\\\Contact\\0id\\\";i:2;s:25:\\\"\\0App\\\\Entity\\\\Contact\\0sujet\\\";s:17:\\\"demande catalogue\\\";s:25:\\\"\\0App\\\\Entity\\\\Contact\\0email\\\";s:13:\\\"joe@gmail.com\\\";s:27:\\\"\\0App\\\\Entity\\\\Contact\\0message\\\";s:17:\\\"demande catalogue\\\";}}i:3;a:6:{i:0;N;i:1;N;i:2;N;i:3;N;i:4;a:0:{}i:5;a:2:{i:0;O:37:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\\":2:{s:46:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0headers\\\";a:2:{s:4:\\\"from\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:4:\\\"From\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:13:\\\"joe@gmail.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}s:2:\\\"to\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:2:\\\"To\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:16:\\\"like@monsite.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}}s:49:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0lineLength\\\";i:76;}i:1;N;}}}s:61:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0envelope\\\";N;}}', '[]', 'default', '2023-05-23 12:02:45', '2023-05-23 12:02:45', NULL),
+(3, 'O:36:\\\"Symfony\\\\Component\\\\Messenger\\\\Envelope\\\":2:{s:44:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0stamps\\\";a:1:{s:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\";a:1:{i:0;O:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\":1:{s:55:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\0busName\\\";s:21:\\\"messenger.bus.default\\\";}}}s:45:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0message\\\";O:51:\\\"Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\\":2:{s:60:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0message\\\";O:39:\\\"Symfony\\\\Bridge\\\\Twig\\\\Mime\\\\TemplatedEmail\\\":4:{i:0;s:24:\\\"emails/contact.html.twig\\\";i:1;N;i:2;a:1:{s:7:\\\"contact\\\";O:18:\\\"App\\\\Entity\\\\Contact\\\":4:{s:22:\\\"\\0App\\\\Entity\\\\Contact\\0id\\\";i:3;s:25:\\\"\\0App\\\\Entity\\\\Contact\\0sujet\\\";s:17:\\\"demande catalogue\\\";s:25:\\\"\\0App\\\\Entity\\\\Contact\\0email\\\";s:13:\\\"joe@gmail.com\\\";s:27:\\\"\\0App\\\\Entity\\\\Contact\\0message\\\";s:17:\\\"demande catalogue\\\";}}i:3;a:6:{i:0;N;i:1;N;i:2;N;i:3;N;i:4;a:0:{}i:5;a:2:{i:0;O:37:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\\":2:{s:46:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0headers\\\";a:2:{s:4:\\\"from\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:4:\\\"From\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:13:\\\"joe@gmail.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}s:2:\\\"to\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:2:\\\"To\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:16:\\\"like@monsite.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}}s:49:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0lineLength\\\";i:76;}i:1;N;}}}s:61:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0envelope\\\";N;}}', '[]', 'default', '2023-05-23 12:03:56', '2023-05-23 12:03:56', NULL),
+(4, 'O:36:\\\"Symfony\\\\Component\\\\Messenger\\\\Envelope\\\":2:{s:44:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0stamps\\\";a:1:{s:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\";a:1:{i:0;O:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\":1:{s:55:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\0busName\\\";s:21:\\\"messenger.bus.default\\\";}}}s:45:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0message\\\";O:51:\\\"Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\\":2:{s:60:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0message\\\";O:39:\\\"Symfony\\\\Bridge\\\\Twig\\\\Mime\\\\TemplatedEmail\\\":4:{i:0;s:24:\\\"emails/contact.html.twig\\\";i:1;N;i:2;a:1:{s:7:\\\"contact\\\";O:18:\\\"App\\\\Entity\\\\Contact\\\":4:{s:22:\\\"\\0App\\\\Entity\\\\Contact\\0id\\\";i:4;s:25:\\\"\\0App\\\\Entity\\\\Contact\\0sujet\\\";s:15:\\\"demande contact\\\";s:25:\\\"\\0App\\\\Entity\\\\Contact\\0email\\\";s:13:\\\"joe@gmail.com\\\";s:27:\\\"\\0App\\\\Entity\\\\Contact\\0message\\\";s:15:\\\"demande contact\\\";}}i:3;a:6:{i:0;N;i:1;N;i:2;N;i:3;N;i:4;a:0:{}i:5;a:2:{i:0;O:37:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\\":2:{s:46:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0headers\\\";a:2:{s:4:\\\"from\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:4:\\\"From\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:13:\\\"joe@gmail.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}s:2:\\\"to\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:2:\\\"To\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:16:\\\"like@monsite.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}}s:49:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0lineLength\\\";i:76;}i:1;N;}}}s:61:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0envelope\\\";N;}}', '[]', 'default', '2023-05-23 12:04:41', '2023-05-23 12:04:41', NULL),
+(5, 'O:36:\\\"Symfony\\\\Component\\\\Messenger\\\\Envelope\\\":2:{s:44:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0stamps\\\";a:1:{s:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\";a:1:{i:0;O:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\":1:{s:55:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\0busName\\\";s:21:\\\"messenger.bus.default\\\";}}}s:45:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0message\\\";O:51:\\\"Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\\":2:{s:60:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0message\\\";O:39:\\\"Symfony\\\\Bridge\\\\Twig\\\\Mime\\\\TemplatedEmail\\\":4:{i:0;s:24:\\\"emails/contact.html.twig\\\";i:1;N;i:2;a:1:{s:7:\\\"contact\\\";O:18:\\\"App\\\\Entity\\\\Contact\\\":4:{s:22:\\\"\\0App\\\\Entity\\\\Contact\\0id\\\";i:5;s:25:\\\"\\0App\\\\Entity\\\\Contact\\0sujet\\\";s:15:\\\"demande contact\\\";s:25:\\\"\\0App\\\\Entity\\\\Contact\\0email\\\";s:13:\\\"joe@gmail.com\\\";s:27:\\\"\\0App\\\\Entity\\\\Contact\\0message\\\";s:15:\\\"demande contact\\\";}}i:3;a:6:{i:0;N;i:1;N;i:2;N;i:3;N;i:4;a:0:{}i:5;a:2:{i:0;O:37:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\\":2:{s:46:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0headers\\\";a:3:{s:4:\\\"from\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:4:\\\"From\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:13:\\\"joe@gmail.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}s:2:\\\"to\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:2:\\\"To\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:16:\\\"like@monsite.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}s:7:\\\"subject\\\";a:1:{i:0;O:48:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\UnstructuredHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:7:\\\"Subject\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:55:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\UnstructuredHeader\\0value\\\";s:18:\\\"Demande de contact\\\";}}}s:49:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0lineLength\\\";i:76;}i:1;N;}}}s:61:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0envelope\\\";N;}}', '[]', 'default', '2023-05-23 12:10:45', '2023-05-23 12:10:45', NULL),
+(6, 'O:36:\\\"Symfony\\\\Component\\\\Messenger\\\\Envelope\\\":2:{s:44:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0stamps\\\";a:1:{s:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\";a:1:{i:0;O:46:\\\"Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\\":1:{s:55:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Stamp\\\\BusNameStamp\\0busName\\\";s:21:\\\"messenger.bus.default\\\";}}}s:45:\\\"\\0Symfony\\\\Component\\\\Messenger\\\\Envelope\\0message\\\";O:51:\\\"Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\\":2:{s:60:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0message\\\";O:39:\\\"Symfony\\\\Bridge\\\\Twig\\\\Mime\\\\TemplatedEmail\\\":4:{i:0;s:24:\\\"emails/contact.html.twig\\\";i:1;N;i:2;a:1:{s:7:\\\"contact\\\";O:18:\\\"App\\\\Entity\\\\Contact\\\":4:{s:22:\\\"\\0App\\\\Entity\\\\Contact\\0id\\\";i:6;s:25:\\\"\\0App\\\\Entity\\\\Contact\\0sujet\\\";s:15:\\\"demande contact\\\";s:25:\\\"\\0App\\\\Entity\\\\Contact\\0email\\\";s:13:\\\"joe@gmail.com\\\";s:27:\\\"\\0App\\\\Entity\\\\Contact\\0message\\\";s:15:\\\"demande contact\\\";}}i:3;a:6:{i:0;N;i:1;N;i:2;N;i:3;N;i:4;a:0:{}i:5;a:2:{i:0;O:37:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\\":2:{s:46:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0headers\\\";a:3:{s:4:\\\"from\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:4:\\\"From\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:13:\\\"joe@gmail.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}s:2:\\\"to\\\";a:1:{i:0;O:47:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:2:\\\"To\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:58:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\MailboxListHeader\\0addresses\\\";a:1:{i:0;O:30:\\\"Symfony\\\\Component\\\\Mime\\\\Address\\\":2:{s:39:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0address\\\";s:16:\\\"like@monsite.com\\\";s:36:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Address\\0name\\\";s:0:\\\"\\\";}}}}s:7:\\\"subject\\\";a:1:{i:0;O:48:\\\"Symfony\\\\Component\\\\Mime\\\\Header\\\\UnstructuredHeader\\\":5:{s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0name\\\";s:7:\\\"Subject\\\";s:56:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lineLength\\\";i:76;s:50:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0lang\\\";N;s:53:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\AbstractHeader\\0charset\\\";s:5:\\\"utf-8\\\";s:55:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\UnstructuredHeader\\0value\\\";s:18:\\\"Demande de contact\\\";}}}s:49:\\\"\\0Symfony\\\\Component\\\\Mime\\\\Header\\\\Headers\\0lineLength\\\";i:76;}i:1;N;}}}s:61:\\\"\\0Symfony\\\\Component\\\\Mailer\\\\Messenger\\\\SendEmailMessage\\0envelope\\\";N;}}', '[]', 'default', '2023-05-23 12:13:03', '2023-05-23 12:13:03', NULL);
+
+--
+-- Déchargement des données de la table `produit`
+--
+
+
+INSERT INTO `produit` (`id`, `nom`, `description`, `prix`, `stock`, `image_name`, `category_id`, `created_at`) VALUES
+(2, 'collier labis', 'Le lapis-lazuli, une pierre qui donne confiance et ouvrira notre esprit à de nouvelles solutions nous conduisant à la résolution .', 100, 2, 'lapis-colier-640-646bedc28d2aa627864971.jpg', 3, NULL),
+(5, 'Grosse bague pierre ruby émeraude argent doré', 'Cette magnifique bague est sertie avec des émeraudes et rubis aux couleurs éclatantes; les deux pierres sont très précieuses et ils sont des symboles de l\'amour et de la passion.', 150, 4, 'maxres-grosse-bague-6484fbf54703d830869837.jpg', 4, NULL),
+(6, 'Bague diamant laboratoire', 'Le diamant synthétique est un diamant dont les caractéristiques sont identiques aux diamants extraits des mines. Ils sont aussi beaux que les diamants naturels mais beaucoup moins chers et plus écologiques.', 80, 4, 'maxresgrossebague-6484fdc683e9f100571410.jpg', 4, NULL),
+(9, 'Collier Spinelle en Argent Doré', 'La Spinelle est une pierre de protection, qui chasse les ondes négatives, mais aussi les cauchemars pour un sommeil plus apaisé.', 180, 2, 'spinel-64850556d46f3734281779.jpg', 3, '2023-06-30 23:53:40'),
+(10, 'Bague Fleur Améthyste', 'Grosse bague artisanale sertie améthyste et émeraude en argent 925.', 180, 2, 'sila-amethyste-bague-64850eb711e7f361622458.jpg', 4, NULL),
+(11, 'Bague Royale Spinelle Péridot', 'Bague sertie d\'une grosse pierre de péridot et spinelle rose monté sur argent massif 925.', 120, 6, 'bague-peridot-tourmaline-649f309bcd3a7233019949.jpg', 4, NULL),
+(12, 'Bague Serpent Saphir Spinelle Rose', 'Bague ouverte en saphir et spinelle rose montée sur argent 925.', 150, 6, 'bague-double-ouverte-649f3190abb2c482427185.jpg', 4, NULL),
+(13, 'Boucles d\'oreilles Ruby', 'Boucles d\'oreilles en ruby et argent 925.', 150, 6, 'bo-ruby-649f323522552703236199.jpg', 2, NULL),
+(14, 'Boucles d\'oreilles Tourmaline', 'Boucles d\'oreilles tourmaline jaune et argent 925.', 200, 6, 'bo-tourmaline-jaune-649f32766f018724677217.jpg', 2, '2023-06-30 23:54:24'),
+(15, 'Boucles d\'oreilles Péridot', 'Boucles d\'oreilles en  pierre péridot et tourmaline rose montées sur argent doré.', 150, 6, 'bo-peridot-649f32d50e22b421611273.jpg', 2, NULL),
+(16, 'Collier Grosse Perle', 'Collier avec une grosse perle de l\'eau douce et des petits saphirs;\r\nla monture et la chaine sont en argent façon ancienne.', 180, 6, 'collier-perle-649f336f1213c710033319.jpg', 3, NULL),
+(17, 'Bague Améthyste Citrine', 'Bague ouverte avec pierres améthyste et citrine, montée sur argent doré.', 150, 6, 'bague-ame-citrine-649f33c329b4d129361712.jpg', 4, NULL),
+(18, 'Boucles d\'oreilles Tourmaline Rose', 'Boucles d\'oreilles longues en tourmaline rose et perles d\'eau douce.', 200, 6, 'bo-long-649f34256a7e2806636642.jpg', 2, NULL),
+(19, 'Bague Ruby Améthyste', 'Bague ouverte en ruby et améthyste monture argent massif 925.', 150, 6, 'bague-double-violet-649f3474115d5313650259.jpg', 4, NULL),
+(20, 'Bague Petit Ruby', 'Bague en ruby monté sur argent façon oxydée.', 20, 10, 'bague-ruby-petit-649f34be22695226412881.jpg', 4, NULL),
+(21, 'Collier Tourmaline Rose', 'Collier tourmaline rose et argent 925.\r\nLongueur 42 cm.', 120, 6, 'colier-tourmaline-rose-649f352f6e824432844921.jpg', 3, '2023-06-30 23:55:00');
+
+--
+-- Déchargement des données de la table `reset_password_request`
+--
+
+INSERT INTO `reset_password_request` (`id`, `user_id`, `selector`, `hashed_token`, `requested_at`, `expires_at`) VALUES
+(4, 5, '7PjsNUR78h7pp9bWareY', 'y95nKL8/TRzwmnLEupGX9GN8kLbDS/seJDRIHXFF+58=', '2023-08-17 15:29:50', '2023-08-17 16:29:50');
+
+--
+-- Déchargement des données de la table `user`
+--
+
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
