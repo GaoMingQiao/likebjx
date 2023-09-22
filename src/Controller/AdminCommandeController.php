@@ -17,7 +17,7 @@ class AdminCommandeController extends AbstractController
     #[Route('/list', name: 'app_admin_commande_list')]
     public function index(ManagerRegistry $doctrine): Response
     {  
-        $commandes = $doctrine->getRepository(Commande::class)->findAll([], array('id'=>'asc'), null, null);
+        $commandes = $doctrine->getRepository(Commande::class)->findBy([], array('id'=>'desc'), null, null);
       
         return $this->render('order/index.html.twig', [
             'commandes' => $commandes

@@ -3,6 +3,7 @@
 {% block title %}Category List{% endblock %}
 
 {% block body %}
+<div class="container">
     <h1>Category List</h1>
 
     <table class="table">
@@ -21,7 +22,7 @@
                 <td>{{ category.id }}</td>
                 <td>{{ category.nom }}</td>
                 <td>{{ category.description }}</td>
-                <td>{{ category.imageName }}</td>
+                <th scope="row"><img class="product-thumbnail" src="{{ vich_uploader_asset(category,'imageFile')}}" alt="bijoux"/></th>
                 <td>
                     <a href="{{ path('app_admin_category_show', {'id': category.id}) }}">show</a>
                     <a href="{{ path('app_admin_category_edit', {'id': category.id}) }}">edit</a>
@@ -36,4 +37,5 @@
     </table>
 
     <a href="{{ path('app_admin_category_new') }}">Create new</a>
+</div>
 {% endblock %}

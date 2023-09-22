@@ -21,7 +21,7 @@ class OrderController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {  
         $idUser = $this->getUser()->getId();
-        $commandes = $doctrine->getRepository(Commande::class)->findBy(["userId"=>$idUser], array('id'=>'asc'), null, null);
+        $commandes = $doctrine->getRepository(Commande::class)->findBy(["userId"=>$idUser], array('id'=>'desc'), null, null);
       
         return $this->render('order/index.html.twig', [
             'commandes' => $commandes
