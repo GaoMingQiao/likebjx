@@ -28,7 +28,7 @@ class Adresse
     #[ORM\ManyToOne(inversedBy: 'adresse')]
     private ?User $user = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable:true)]
     private ?int $userId = null;
 
     public function getId(): ?int
