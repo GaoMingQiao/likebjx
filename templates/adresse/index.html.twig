@@ -9,6 +9,7 @@
     Vous n'avez pas d'adresses.
 </p>
 <a type="button" class="btn btn-success" href="{{ path('adresse_new')}}">Ajouter mon adresse</a>
+
 {% else %}
 
 <div class="container my-4">
@@ -64,12 +65,13 @@
                 
             </tr> 
   {% endfor %}
-  {% endif %}
+  
     </tbody>
 </table>
 <a type="button" class="btn btn-info" id="valideAdresse">Choisir mon adresse</a>
-<a type="button" class="btn btn-success" href="{{ path('adresse_new')}}">Ajouter mon adresse</a>
+<a type="button" class="btn btn-success" href="{{ path('adresse_new')}}">Ajouter mon adresse</a> 
 </div>
+{% endif %}
 {% endblock %}
 
 {% block script %}
